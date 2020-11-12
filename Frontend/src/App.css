@@ -35,7 +35,7 @@
 }
 
 .login {
-  background-image: url('/images/recommend.jpg');
+  /*background-image: url('/images/recommend.jpg');*/
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
