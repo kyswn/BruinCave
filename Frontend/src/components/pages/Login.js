@@ -6,6 +6,8 @@ export default function Login() {
 }*/
 import React from "react";
 import { Button } from "../Button";
+import './forms/Form1.css';
+
 
 export class Login extends React.Component {
   constructor(props) {
@@ -14,25 +16,45 @@ export class Login extends React.Component {
 
   render() {
     return (
-      <div className="base-container" ref={this.props.containerRef}>
-        <div className="header">Login</div>
-        <div className="content">
-          
-          <div className="form">
-            <div className="form-group">
-              <label htmlFor="username">Username</label>
-              <input type="text" name="username" placeholder="username" />
-            </div>
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <input type="password" name="password" placeholder="password" />
-            </div>
-          </div>
+     <>
+     <div className= 'login'>
+      <div className='form-container-small'>
+        <div className='form-content'>
+          <form className='form'>
+            <h1>
+              Log In
+            </h1>
+        
+        <div className='form-inputs'>
+          <label className='form-label'>Email</label>
+          <input
+            className='form-input'
+            type='email'
+            name='email'
+            placeholder='Enter your email'
+          />
         </div>
-        <div className="footer">
-        <Button buttonStyle='btn--outline'>Login</Button>
+        <div className='form-inputs'>
+          <label className='form-label'>Password</label>
+          <input
+            className='form-input'
+            type='password'
+            name='password'
+            placeholder='Enter your password'
+          />
         </div>
+        <button className='form-input-btn'>
+        Log In
+        </button>
+        <span className='form-input-login'>
+          Do not have an account? Signup <a href='http://localhost:3000/signup'>here</a>
+        </span>
+        
+    </form>
+    </div>
       </div>
+      </div>
+    </>
     );
   }
 }

@@ -36,12 +36,11 @@
 }
 
 .login {
-  /*background-image: url('/images/recommend.jpg');*/
+  background-image: url('/images/Roommates.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   color: #fff;
-  font-size: 100px;
 }
 
 .signup {
