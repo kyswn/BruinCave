@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import About from './components/pages/About';
 import Recommend from './components/pages/Recommend';
 import Login from './components/pages/Login';
+import Signup from './components/pages/Signup';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path='/about' component={About} />
           <Route path='/recommend' component={Recommend} />
           <Route path='/login' component={Login} />
+          <Route path='/signup' component={Signup} />
         </Switch>
       </Router>
     </>

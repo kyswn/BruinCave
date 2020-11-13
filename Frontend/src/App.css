@@ -8,7 +8,8 @@
 .home,
 .about,
 .recommend,
-.login {
+.login,
+.signup {
   display: flex;
   height: 90vh;
   align-items: center;
@@ -41,6 +42,14 @@
   background-repeat: no-repeat;
   color: #fff;
   font-size: 100px;
+}
+
+.signup {
+  background-image: url('/images/signup-bgd.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
 }
 
 .home {
