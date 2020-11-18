@@ -1,5 +1,5 @@
 ##  **Notice before using the api:**
-1. Set up your databse and then put the db information in BruinCave\Backend\api\config\db.config.js
+1. Set up your mysql database，then run \BruinCave\Backend\api\setup.sql to set up the tables, then put the db information in BruinCave\Backend\api\config\db.config.js
 2. If see Error: ER_NOT_SUPPORTED_AUTH_MODE: Client does not support authentication protocol requested by server; consider upgrading MySQL client]  
 Try: https://stackoverflow.com/questions/50093144/mysql-8-0-client-does-not-support-authentication-protocol-requested-by-server
 
