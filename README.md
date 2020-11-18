@@ -11,7 +11,7 @@ User JSON :
   "Password": string,      
   "Contact": int,         
   "Email":  string,         
-  "Type" =  string (has to be either "renter" or "realtor")     
+  "Type" : string (has to be either "renter" or "realtor")     
 }      
 
 
