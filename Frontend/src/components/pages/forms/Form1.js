@@ -18,7 +18,7 @@ const Form = () => {
         ) : (
           <FormSuccess />
         )}
-        <span className='next-btn'><a href='http://localhost:3000/login'> >> </a></span>
+        <span className='next-btn'><a href='http://localhost:3000/login'> </a></span>
       </div>
     </>
   );

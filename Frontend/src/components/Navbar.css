@@ -1,6 +1,6 @@
 .navbar {
   /*background: linear-gradient(90deg, rgb(63, 55, 55) 0%,rgb(70, 130, 180) 70%);*/
-  background:#4682B4;
+  background: #4682b4;
   height: 80px;
   display: flex;
   justify-content: center;
@@ -9,7 +9,6 @@
   position: sticky;
   top: 0;
   z-index: 999;
-  
 }
 
 .navbar-container {
@@ -22,12 +21,14 @@
 
 .navbar-logo {
   color: #fff;
-  justify-self: start;
+  /*justify-self: start;*/
   margin-left: 20px;
-  cursor: pointer;
+  /*cursor: pointer;*/
   text-decoration: none;
   font-size: 2rem;
   display: flex;
+  position:absolute;
+  left:3%;
   align-items: center;
 }
 
@@ -51,6 +52,49 @@
   height: 80px;
 }
 
+.nav-links-home {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  text-align: left;
+  position: absolute;
+  left: 40%;
+  height: 100%;
+}
+
+.nav-links-aboutus {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  text-align: left;
+  position: absolute;
+  left: 60%;
+  height: 100%;
+}
+
+.nav-links-recommend {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  text-align: left;
+  position: absolute;
+  left: 48%;
+  height: 100%;
+}
+
+.nav-link-aboutus {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  left: 70%;
+  position: absolute;
+  height: 100%;
+}
+
 .nav-links {
   color: #fff;
   display: flex;
@@ -60,7 +104,15 @@
   height: 100%;
 }
 
-.nav-links:hover {
+.nav-links-aboutus:hover {
+  border-bottom: 4px solid #fff;
+  transition: all 0.2s ease-out;
+}
+.nav-links-recommend:hover {
+  border-bottom: 4px solid #fff;
+  transition: all 0.2s ease-out;
+}
+.nav-links-recommend:hover {
   border-bottom: 4px solid #fff;
   transition: all 0.2s ease-out;
 }
@@ -95,7 +147,7 @@
   }
 
   .nav-menu.active {
-    background: #4682B4;
+    background: #4682b4;
     left: 0;
     opacity: 1;
     transition: all 0.5s ease;
@@ -111,7 +163,7 @@
 
   .nav-links:hover {
     background-color: #fff;
-    color: #4682B4;
+    color: #4682b4;
     border-radius: 0;
   }
 
@@ -154,7 +206,49 @@
 
   .nav-links-mobile:hover {
     background: #fff;
-    color: #4682B4;
+    color: #4682b4;
+    transition: 250ms;
+  }
+
+  .nav-links-mobile-signup {
+    display: block;
+    text-align: center;
+    margin: 2rem auto;
+    border-radius: 4px;
+    width: 80%;
+    text-decoration: none;
+    font-size: 1.5rem;
+    background-color: transparent;
+    color: #fff;
+    padding: 14px 20px;
+    border: 1px solid #fff;
+    transition: all 0.3s ease-out;
+  }
+
+  .nav-links-mobile-signup:hover {
+    background: #fff;
+    color: #4682b4;
+    transition: 250ms;
+  }
+
+  .nav-links-mobile-login {
+    display: block;
+    text-align: center;
+    margin: 2rem auto;
+    border-radius: 4px;
+    width: 80%;
+    text-decoration: none;
+    font-size: 1.5rem;
+    background-color: transparent;
+    color: #fff;
+    padding: 14px 20px;
+    border: 1px solid #fff;
+    transition: all 0.3s ease-out;
+  }
+
+  .nav-links-mobile-login:hover {
+    background: #fff;
+    color: #4682b4;
     transition: 250ms;
   }
 }

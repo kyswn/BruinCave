@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
 import { SignupButton } from "./SignupButton";
 import { Button } from "./Button";
-
 
 function Navbar() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
+  const { pathname } = useLocation();
 
   const showButton = () => {
     if (window.innerWidth <= 960) {
@@ -19,16 +19,60 @@ function Navbar() {
     }
   };
 
+  function classHome() {
+    if (!button) {
+      return "nav-links";
+    } else {
+      return "nav-links-home";
+    }
+  }
+
+  function classAboutUs() {
+    if (!button) {
+      return "nav-links";
+    } else {
+      return "nav-links-aboutus";
+    }
+  }
+
+  function classRecommend() {
+    if (!button) {
+      return "nav-links";
+    } else {
+      return "nav-links-recommend";
+    }
+  }
+
+  function returnLogin() {
+    if (pathname.startsWith("/login")) {
+      return;
+    } else {
+      return <Button buttonStyle="btn--outline">Login</Button>;
+    }
+  }
+  function returnSignup() {
+    if (pathname.startsWith("/signup")) {
+      return;
+    } else {
+      return <SignupButton buttonStyle="btn--outline">Signup</SignupButton>;
+    }
+  }
+
   useEffect(() => {
     showButton();
   }, []);
 
-  window.addEventListener('resize', showButton);
+  window.addEventListener("resize", showButton);
   return (
     <>
-      <nav className='navbar'>
-        <div className='navbar-container'>
-          <Link to='/' className='navbar-logo' onClick={closeMobileMenu} style={{ fontFamily:'Syne Mono' } }>
+      <nav className="navbar">
+        <div className="navbar-container">
+          <Link
+            to="/"
+            className="navbar-logo"
+            onClick={closeMobileMenu}
+            style={{ fontFamily: "Syne Mono" }}
+          >
             BruinCave
           </Link>
           <div className="menu-icon" onClick={handleClick}>
@@ -36,17 +80,21 @@ function Navbar() {
           </div>
           <ul className={click ? "nav-menu active" : "nav-menu"}>
             <li className="nav-item">
-              <Link to="/" className="nav-links" onClick={closeMobileMenu}
-              style={{ fontFamily: 'Roboto' }}>
+              <Link
+                to="/"
+                className={classHome()}
+                onClick={closeMobileMenu}
+                style={{ fontFamily: "Roboto" }}
+              >
                 Home
               </Link>
             </li>
             <li className="nav-item">
               <Link
                 to="/about"
-                className="nav-links"
+                className={classAboutUs()}
                 onClick={closeMobileMenu}
-                style={{ fontFamily: 'Roboto' }}
+                style={{ fontFamily: "Roboto" }}
               >
                 About Us
               </Link>
@@ -54,9 +102,9 @@ function Navbar() {
             <li className="nav-item">
               <Link
                 to="/recommend"
-                className="nav-links"
+                className={classRecommend()}
                 onClick={closeMobileMenu}
-                style={{ fontFamily: 'Roboto' }}
+                style={{ fontFamily: "Roboto" }}
               >
                 Recommend
               </Link>
@@ -64,8 +112,8 @@ function Navbar() {
 
             <li>
               <Link
-                to='/login'
-                className='nav-links-mobile'
+                to="/login"
+                className="nav-links-mobile"
                 onClick={closeMobileMenu}
               >
                 Login
@@ -74,16 +122,16 @@ function Navbar() {
 
             <li>
               <Link
-                to='/signup'
-                className='nav-links-mobile'
+                to="/signup"
+                className="nav-links-mobile"
                 onClick={closeMobileMenu}
               >
                 Signup
               </Link>
             </li>
           </ul>
-          {button && <Button buttonStyle='btn--outline'>Login</Button>}
-          {button && <SignupButton buttonStyle='btn--outline'>Signup</SignupButton>}
+          {button && returnLogin()}
+          {button && returnSignup()}
         </div>
       </nav>
     </>
