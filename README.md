@@ -27,7 +27,7 @@ Delete all users
 - GET /users/[id]   
 Retrieve info of a single user with UserID id; Return a user JSON if success
 
-- POST /users/[id]  
+- PUT /users/[id]  
 Update the user info of user with UserID id; Pass a user JSON as body; Return a user JSON after change if success
 
 - DELETE /users/[id]    
