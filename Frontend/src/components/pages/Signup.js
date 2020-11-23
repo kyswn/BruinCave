@@ -9,7 +9,7 @@ function Signup() {
   const [signUpPage, setSignUpPage] = useState("account");
 
   function setPage() {
-    if (signUpPage == "account") {
+    if (signUpPage === "account") {
       return (
         <>
           <div className="signup">
@@ -39,7 +39,7 @@ function Signup() {
           </div>
         </>
       );
-    } else if (signUpPage == "habits") {
+    } else if (signUpPage === "habits") {
       return (
         <>
           <>

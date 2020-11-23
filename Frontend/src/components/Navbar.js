@@ -54,7 +54,7 @@ function Navbar() {
     if (pathname.startsWith("/signup")) {
       return;
     } else {
-      return <SignupButton buttonStyle="btn--outline">Signup</SignupButton>;
+      return <SignupButton buttonStyle="btn--outline">Sign up</SignupButton>;
     }
   }
 

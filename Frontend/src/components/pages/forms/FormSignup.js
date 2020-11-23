@@ -4,15 +4,15 @@ import useForm from './useForm';
 import './Form1.css';
 
 const FormSignup = ({ submitForm }) => {
-  const { handleChange, handleSubmit, values, errors } = useForm(
+  const { handleChange, values, errors } = useForm(
     submitForm,
     validate
   );
 
   return (
     <>
-        <h1>
-          Sign up
+        <h1 style={{ fontFamily: "Roboto" }}>
+          <b>Sign up</b>
         </h1>
         <div className='form-inputs'>
           <label className='form-label'>Username</label>

@@ -5,21 +5,18 @@ import "./HeroSection.css";
 
 function HeroSection() {
   return (
-    <div className="home">
+    <div class="home" font-size="30px">
+     
       <div className="hero-btns">
-        <h2
-          
-          class="font-effect-outline"
-          style={{ fontFamily: "Roboto" }}
-        >
+        <h1 class="font-effect-outline my-font" style={{ fontFamily: "Roboto" }}>
           <b>Find your roommates </b>
-        </h2>
+        </h1>
         <h2
           align="left"
-          class="font-effect-outline"
+          class="font-effect-outline my-font"
           style={{ fontFamily: "Roboto" }}
         >
-          <b>among Bruins in one minute</b>
+          <b>among Bruins in an instant</b>
         </h2>
         <Button
           className="btns"

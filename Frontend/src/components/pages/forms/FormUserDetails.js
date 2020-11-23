@@ -4,7 +4,7 @@ import useForm from './useForm';
 import './Form1.css';
 
 const FormUserDetails = ({ submitForm }) => {
-  const { handleChange, handleSubmit, values, errors } = useForm(
+  const { handleChange, values, errors } = useForm(
     submitForm,
     validate
   );

@@ -59,3 +59,40 @@
   color: #fff;
   
 }
+
+.rowC{display:table-row; flex-direction:row;}
+
+.crop {
+  
+  height: 150px;
+  overflow: hidden;
+  
+}
+
+.round-img { 
+  object-fit: cover;
+  width: 150px;
+  height: 150px;
+  margin-left: auto;
+    margin-right: auto;
+}
+
+
+#facilities {
+  background-color: #dbe5e6;
+  padding: 30px 0px;
+}
+
+#facilities h1{
+  font-weight: 900;
+  font-size: 34px;
+  padding-bottom: 5px
+}
+
+.my-font{
+  font-size: 80px;
+}
+
+
+
+
