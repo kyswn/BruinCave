@@ -42,6 +42,49 @@ Apt.findOne = (AptId, result) => {
         }
         
     })
+};
+
+Apt.updateOne = (id, apt, result) => {
+    sql.query(
+        "UPDATE apartment SET Name = ?, Bedroom = ?, Bathroom = ?, Parking = ?, Description = ?,\
+        Location = ?, Amenity = ?, Price = ?, Comment = ? where ApartmentID = ?", 
+        [apt.Name, apt.Bedroom, apt.Bathroom, apt.Parking, apt.Description, apt.Location,
+        apt.Amenity, apt.Price, apt.Comment, id],
+        (err, res) => {
+            if (err) {
+                console.log("error: ", err);
+                result(err, null);
+                return;
+            }
+
+            if (res.affectedRows === 0) {
+                result({ kind: "not_found"}, null);
+                return;
+            }
+
+            console.log("updated Apartment: ", {id: id, ...apt});
+            result(null, {id: id, ...apt});
+        }
+    );
+};
+
+Apt.remove = (id, result) => {
+    sql.query("DELETE FROM apartment WHERE ApartmentID = ?", id, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+            return;
+        }
+    
+        if (res.affectedRows == 0) {
+            // not found User with the id
+            result({ kind: "not_found" }, null);
+            return;
+        }
+    
+        console.log("deleted Apt with id: ", id);
+        result(null, res);
+    });
 }
 
 module.exports = Apt;

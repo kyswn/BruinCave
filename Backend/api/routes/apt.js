@@ -6,6 +6,8 @@ router.post("/", apt.create);
 
 router.get("/:AptID", apt.findOne);
 
-// router.put("/:AptID", apt.update);
+router.put("/:AptID", apt.update);
+
+router.delete('/:AptID', apt.deleteOne);
 
 module.exports = router;

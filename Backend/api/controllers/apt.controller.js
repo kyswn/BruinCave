@@ -50,3 +50,45 @@ exports.findOne = (req,res) => {
         }
     });
 };
+
+exports.update = (req,res) => {
+    if (!req.body) {
+        res.send({
+            message: "Content cannot be empty"
+        });
+    }
+
+    Apt.updateOne(req.params.AptID, new Apt(req.body), (err, data) => {
+        if (err) {
+            if (err.kind === "not_found") {
+                res.status(404).send({
+                    message: `Not found apt with id=${req.params.AptID}.`
+                });
+            } else {
+                res.status(500).send({
+                    message: `Could not update with id=${req.params.AptID}.`
+                })
+            }
+        } else {
+            res.send(data);
+        }
+    })
+};
+
+exports.deleteOne = (req, res) => {
+    Apt.remove(req.params.AptID, (err, data) => {
+        if (err) {
+            if (err.kind === "not_found") {
+                res.status(404).send({
+                    message: `Not found apt with id=${req.params.AptID}.`
+                });
+            } else {
+                res.status(500).send({
+                    message: `Could not update with id=${req.params.AptID}.`
+                })
+            }
+        } else {
+            res.send({ message: `Apt was deleted with id=${req.params.AptID}.`})
+        }        
+    })
+};
