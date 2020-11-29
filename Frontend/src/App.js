@@ -7,6 +7,9 @@ import About from './components/pages/About';
 import Recommend from './components/pages/Recommend';
 import Login from './components/pages/Login';
 import Signup from './components/pages/Signup';
+import Profile from './components/pages/Profile';
+import ProfileDisplay from './components/pages/ProfileDisplay';
+
 
 function App() {
   return (
@@ -19,6 +22,8 @@ function App() {
           <Route path='/recommend' component={Recommend} />
           <Route path='/login' component={Login} />
           <Route path='/signup' component={Signup} />
+          <Route path='/profile' component={Profile} />
+          <Route path='/recommendJoe%20Bruin' component={ProfileDisplay} />
         </Switch>
       </Router>
     </>

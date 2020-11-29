@@ -1,38 +1,38 @@
 import React from "react";
 //import Button from 'react-bootstrap/Button';
 import "../../App.css";
-import "./RecommendationCard.css";
-const RecommendationCard = (props) => {
+import "./Profile.css";
+
+const Profile = () => {
   return (
     <>
-      <div class="card-padding">
-        <div class="card card-shadow" style={{ width: "18rem" }}>
+      <div class="profile-padding">
+        <div class="profile-shadow" style={{ width: "38rem" }}>
           <br />
           <img
-            src={props.img}
+            src="/images/user7.jpg"
             class="card-img-top rounded-circle round-img"
             alt="user"
+            style = {{position: 'middle'}}
           ></img>
           <div class="card-body">
             <h5 class="card-title title" style={{ fontFamily: "Syne Mono" }}>
-              {props.name}
+              iris
             </h5>
             <p class="card-text" style={{ fontFamily: "Roboto" }}>
-              Major: {props.major}
+              Major:  x
             </p>
             <p class="card-text" style={{ fontFamily: "Roboto" }}>
-              Gender: {props.gender}
+              Gender: female
             </p>
             <p class="card-text" style={{ fontFamily: "Roboto" }}>
-              Description: {props.description}
+              Description: abaaba
             </p>
-            <a href={'/recommend' + props.name} class="card-link" style={{ fontFamily: "Roboto" }}>
-              View Profile
-            </a>
+            
           </div>
         </div>
       </div>
     </>
   );
 };
-export default RecommendationCard;
+export default Profile;

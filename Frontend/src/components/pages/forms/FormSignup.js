@@ -27,12 +27,12 @@ const FormSignup = ({ submitForm }) => {
           {errors.username && <p>{errors.username}</p>}
         </div>
         <div className='form-inputs'>
-          <label className='form-label'>Email</label>
+          <label className='form-label'>UCLA Email</label>
           <input
             className='form-input'
             type='email'
             name='email'
-            placeholder='Enter your email'
+            placeholder='Enter your UCLA email'
             value={values.email}
             onChange={handleChange}
           />

@@ -58,6 +58,14 @@ function Navbar() {
     }
   }
 
+  function classProfile() {
+    if (!button) {
+      return "nav-links";
+    } else {
+      return "nav-links-profile";
+    }
+  }
+
   useEffect(() => {
     showButton();
   }, []);
@@ -109,6 +117,17 @@ function Navbar() {
                 Recommend
               </Link>
             </li>
+            
+            <li className="nav-item">
+              <Link
+                to="/profile"
+                className={classProfile()}
+                onClick={closeMobileMenu}
+                style={{ fontFamily: "Roboto" }}
+              >
+                Profile
+              </Link>
+            </li>
 
             <li>
               <Link
@@ -129,6 +148,9 @@ function Navbar() {
                 Signup
               </Link>
             </li>
+
+            
+            
           </ul>
           {button && returnLogin()}
           {button && returnSignup()}
