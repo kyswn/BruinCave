@@ -6,7 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+var aptRouter = require('./routes/apt');
 var app = express();
 
 // view engine setup
@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome." });
 });
 app.use('/users', usersRouter);
-
+app.use('/apt', aptRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
