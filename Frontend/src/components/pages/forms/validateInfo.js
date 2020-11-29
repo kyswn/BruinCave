@@ -10,7 +10,7 @@ export default function validateInfo(values) {
 
   if (!values.email) {
     errors.email = 'Email required';
-  } else if (!/\S+@\S+\.\S+/.test(values.email)) {
+  } else if (!/\S+@g.ucla.edu/.test(values.email)) {
     errors.email = 'Email address is invalid';
   }
   if (!values.password) {

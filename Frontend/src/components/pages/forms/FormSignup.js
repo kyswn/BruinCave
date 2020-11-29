@@ -4,16 +4,15 @@ import useForm from './useForm';
 import './Form1.css';
 
 const FormSignup = ({ submitForm }) => {
-  const { handleChange, handleSubmit, values, errors } = useForm(
+  const { handleChange, values, errors } = useForm(
     submitForm,
     validate
   );
 
   return (
-    <div className='form-content'>
-      <form onSubmit={handleSubmit} className='form' noValidate>
-        <h1>
-          Sign up
+    <>
+        <h1 style={{ fontFamily: "Roboto" }}>
+          <b>Sign up</b>
         </h1>
         <div className='form-inputs'>
           <label className='form-label'>Username</label>
@@ -28,12 +27,12 @@ const FormSignup = ({ submitForm }) => {
           {errors.username && <p>{errors.username}</p>}
         </div>
         <div className='form-inputs'>
-          <label className='form-label'>Email</label>
+          <label className='form-label'>UCLA Email</label>
           <input
             className='form-input'
             type='email'
             name='email'
-            placeholder='Enter your email'
+            placeholder='Enter your UCLA email'
             value={values.email}
             onChange={handleChange}
           />
@@ -63,11 +62,12 @@ const FormSignup = ({ submitForm }) => {
           />
           {errors.password2 && <p>{errors.password2}</p>}
         </div>
-        <span className='form-input-login'>
-          Already have an account? Login <a href='http://localhost:3000/login'>here</a>
-        </span>
-      </form>
-    </div>
+        
+        
+        
+        
+       
+      </>
   );
 };
 export default FormSignup;

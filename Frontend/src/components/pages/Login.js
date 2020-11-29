@@ -1,18 +1,9 @@
-/*import React from 'react';
-import '../../App.css';
-
-export default function Login() {
-  return <h1 className='login'>Login</h1>;
-}*/
 import React from "react";
-import { Button } from "../Button";
 import './forms/Form1.css';
 
 
 export class Login extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  
 
   render() {
     return (
@@ -21,8 +12,8 @@ export class Login extends React.Component {
       <div className='form-container-small'>
         <div className='form-content'>
           <form className='form'>
-            <h1>
-              Log In
+            <h1 style={{ fontFamily: "Roboto" }}>
+              <b>Log In</b>
             </h1>
         
         <div className='form-inputs'>
