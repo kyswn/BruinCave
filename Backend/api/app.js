@@ -10,6 +10,7 @@ var aptRouter = require('./routes/apt');
 var userinfoRouter = require('./routes/userinfo');
 var preferenceRouter = require('./routes/preferences');
 var ownershipRouter = require('./routes/ownership');
+var recommendRouter = require('./routes/recommend');
 var app = express();
 
 // view engine setup
@@ -31,6 +32,7 @@ app.use('/apt', aptRouter);
 app.use('/userinfo', userinfoRouter);
 app.use('/preferences', preferenceRouter);
 app.use('/ownership', ownershipRouter);
+app.use('/recommend', recommendRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

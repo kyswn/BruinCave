@@ -12,7 +12,7 @@ const Userinfo = function(userinfo) {
 };
 
 Userinfo.create = (newUserinfo, result) => {
-    sql.query("INSERT INTO userinfo SET ?", newUserinfo, (err, res) => {
+    sql.query("INSERT INTO UserInfo SET ?", newUserinfo, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -25,7 +25,7 @@ Userinfo.create = (newUserinfo, result) => {
 }
 
 Userinfo.findById = (UserId, result) => {
-    sql.query(`SELECT * FROM userinfo WHERE ID = ${UserId}`, (err, res) => {
+    sql.query(`SELECT * FROM UserInfo WHERE ID = ${UserId}`, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -44,7 +44,7 @@ Userinfo.findById = (UserId, result) => {
 
 Userinfo.updateById = (id, userinfo, result) => {
     sql.query(
-        "UPDATE userinfo SET SleepStart = ?, SleepEnd = ?, BudgetLow = ?, BudgetHigh = ?, \
+        "UPDATE UserInfo SET SleepStart = ?, SleepEnd = ?, BudgetLow = ?, BudgetHigh = ?, \
         Gender = ?, Pet = ?, Parking = ?, Comment = ? WHERE ID = ?", 
         [userinfo.SleepStart, userinfo.SleepEnd, userinfo.BudgetLow, userinfo.BudgetHigh,
         userinfo.Gender, userinfo.Pet, userinfo.Parking, userinfo.Comment, id],
@@ -68,7 +68,7 @@ Userinfo.updateById = (id, userinfo, result) => {
 };
 
 Userinfo.remove = (id, result) => {
-    sql.query("DELETE FROM userinfo WHERE ID = ?", id, (err, res) => {
+    sql.query("DELETE FROM UserInfo WHERE ID = ?", id, (err, res) => {
         if (err) {
           console.log("error: ", err);
           result(null, err);

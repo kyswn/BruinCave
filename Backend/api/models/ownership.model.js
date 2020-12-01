@@ -8,7 +8,7 @@ const Ownership = function(ownership) {
 };
 
 Ownership.create = (newOwnership, result) => {
-  sql.query("INSERT INTO ownership SET ?", newOwnership, (err, res) => {
+  sql.query("INSERT INTO Ownership SET ?", newOwnership, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -21,7 +21,7 @@ Ownership.create = (newOwnership, result) => {
 };
 
 Ownership.findByUserId = (UserId, result) => {
-  sql.query(`SELECT AptID FROM ownership WHERE UsrID = ${UserId}`, (err, res) => {
+  sql.query(`SELECT AptID FROM Ownership WHERE UsrID = ${UserId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -40,7 +40,7 @@ Ownership.findByUserId = (UserId, result) => {
 };
 
 Ownership.findByAptId = (AptId, result) => {
-  sql.query(`SELECT UsrID FROM ownership WHERE AptID = ${AptId}`, (err, res) => {
+  sql.query(`SELECT UsrID FROM Ownership WHERE AptID = ${AptId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -59,7 +59,7 @@ Ownership.findByAptId = (AptId, result) => {
 };
 
 Ownership.removeByBothId = (UserId, AptId, result) => {
-  sql.query(`DELETE FROM ownership WHERE UsrID = ${UserId} AND AptID = ${AptId}`, (err, res) => {
+  sql.query(`DELETE FROM Ownership WHERE UsrID = ${UserId} AND AptID = ${AptId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -79,7 +79,7 @@ Ownership.removeByBothId = (UserId, AptId, result) => {
 
 
 Ownership.removeByUserId = (UserId, result) => {
-  sql.query("DELETE FROM ownership WHERE UsrID = ?",
+  sql.query("DELETE FROM Ownership WHERE UsrID = ?",
    UserId, (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -99,7 +99,7 @@ Ownership.removeByUserId = (UserId, result) => {
 };
 
 Ownership.removeByAptId = (AptId, result) => {
-  sql.query("DELETE FROM ownership WHERE AptID = ?",
+  sql.query("DELETE FROM Ownership WHERE AptID = ?",
    AptId, (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -120,7 +120,7 @@ Ownership.removeByAptId = (AptId, result) => {
 
 
 Ownership.removeAll = result => {
-  sql.query("DELETE FROM ownership", (err, res) => {
+  sql.query("DELETE FROM Ownership", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);

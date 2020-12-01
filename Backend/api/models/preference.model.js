@@ -11,7 +11,7 @@ const Preference = function(preference) {
 };
 
 Preference.create = (newPreference, result) => {
-  sql.query("INSERT INTO preference SET ?", newPreference, (err, res) => {
+  sql.query("INSERT INTO Preference SET ?", newPreference, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -24,7 +24,7 @@ Preference.create = (newPreference, result) => {
 };
 
 Preference.findById = (UserId, result) => {
-  sql.query(`SELECT * FROM preference WHERE ID = ${UserId}`, (err, res) => {
+  sql.query(`SELECT * FROM Preference WHERE ID = ${UserId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -43,7 +43,7 @@ Preference.findById = (UserId, result) => {
 };
 
 Preference.getAll = result => {
-  sql.query("SELECT * FROM preference", (err, res) => {
+  sql.query("SELECT * FROM Preference", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -57,7 +57,7 @@ Preference.getAll = result => {
 
 Preference.updateById = (id, preference, result) => {
   sql.query(
-    "UPDATE preference SET SleepStart = ?, SleepEnd = ?, Gender = ?, HasPet = ?, Description = ? WHERE ID = ?",
+    "UPDATE Preference SET SleepStart = ?, SleepEnd = ?, Gender = ?, HasPet = ?, Description = ? WHERE ID = ?",
     [preference.SleepStart, preference.SleepEnd, preference.Gender,preference.HasPet,preference.Description, id ],
     (err, res) => {
       if (err) {
@@ -79,7 +79,7 @@ Preference.updateById = (id, preference, result) => {
 };
 
 Preference.remove = (id, result) => {
-  sql.query("DELETE FROM preference WHERE ID = ?",
+  sql.query("DELETE FROM Preference WHERE ID = ?",
    id, (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -99,7 +99,7 @@ Preference.remove = (id, result) => {
 };
 
 Preference.removeAll = result => {
-  sql.query("DELETE FROM preference", (err, res) => {
+  sql.query("DELETE FROM Preference", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
