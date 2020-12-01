@@ -40,3 +40,12 @@
 .display-row .value {
     flex: 1;
 }
+
+.form-content .edit {
+    float: right;
+    color: rgba(255, 179, 0, 1);
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 26px;
+    margin-right: 24px;
+}
