@@ -16,72 +16,174 @@ exports.recommend = (req, res) => {
         return;
       } 
       // if renter does not own an apartment
-      recommendNoApt(userId, (recErr, recData) => {
+      recommendWithoutApt(userId, (recErr, recData) => {
         if (recErr) {//TODO
           res.status(500).send({
             message: recErr.message || "Error in recommending roommates"
           });
-        } else res.send(recData);
+        } else {
+          res.send(recData);
+        }
       });
       return;
     } 
+
+    // if renter owns an apartment
+    Apt.findOne(ownershipData[0].AptID, (aptErr, aptData) => {
+      if (aptErr) {
+        res.status(500).send({
+          message: aptErr.message || "Error retrieving apartment with AptId"
+        });
+        return;
+      }
+      
+      recommendWithApt(userId, aptData, (recErr, recData) => {
+        if (recErr) {//TODO
+          res.status(500).send({
+            message: recErr.message || "Error in recommending roommates"
+          });
+        } else {
+          res.send(recData);
+        }
+      });
+    });
+
   });
 }
 
-const recommendNoApt = (userId, result) => {
+// recommend roommates to users without an apartment
+const recommendWithoutApt = (userId, result) => {
   Preference.findById(userId, (preferenceErr, preferenceData) => {
     if (preferenceErr) {
       result(preferenceErr, null);
       return;
-    } 
-
-    User.getAll((allUsersErr, allUsersData) => {
-      if (allUsersErr) {
-        result(allUsersErr, null);
+    }
+    Userinfo.findById(userId, (myInfoErr, myInfoData) => {
+      if (myInfoErr) {
+        result(myInfoErr, null);
         return;
       }
+      User.getAll((allUsersErr, allUsersData) => {
+        if (allUsersErr) {
+          result(allUsersErr, null);
+          return;
+        }
 
-      let recUsers = [];
+        let recUsers = [];
+        // among all users, add the users to be recommened to recUsers
+        const promises = allUsersData.map(target => new Promise(resolve => {
+          const targetId = target.UserID;
+          if (targetId == userId) {
+            resolve();
+            return;
+          } 
 
-      const promises = allUsersData.map(target => new Promise((resolve, reject) => {
-        const targetId = target.UserID;
-        if (targetId == userId) {
-          resolve();
-        } else {
-          Ownership.findByUserId(targetId, (ownershipErr, ownershipData) => {
-            if (ownershipErr) {
-              if (ownershipErr.kind !== "not_found") {
-                result(ownershipErr, null);
-                return;
-              }  
-              // target does not own an apartment
-              Userinfo.findById(targetId, (targetInfoErr, targetInfoData) => {
-                if (targetInfoErr) {
-                  result(targetInfoErr, null);
+          Userinfo.findById(targetId, (targetInfoErr, targetInfoData) => {
+            if (targetInfoErr) {
+              result(targetInfoErr, null);
+              resolve();
+              return;
+            }
+            Ownership.findByUserId(targetId, (ownershipErr, ownershipData) => {
+              if (ownershipErr) {
+                if (ownershipErr.kind !== "not_found") {
+                  result(ownershipErr, null);
+                  resolve();
                   return;
-                }
+                }  
+                // ownership not found, target does not own an apartment
+                // both user and target dont own apartment -- only check if they match with each other 
                 if (checkUserMatch(preferenceData, targetInfoData)) {
                   recUsers.push({
                     user: target,
                     userInfo: targetInfoData,
                     apartment: null,
                   })
+                  resolve();
                 }
-                resolve();
-              });
-            }
-            
+              } else {
+                // target owns an apartment
+                Apt.findOne(ownershipData[0].AptID, (aptErr, aptData) => {
+                  if (aptErr) {
+                    result(aptErr, null);
+                    resolve();
+                    return;
+                  }
+                  // check if user and target match, and if user and apartment match
+                  if (checkUserMatch(preferenceData, targetInfoData) && checkAptMatch(aptData, myInfoData)) {
+                    recUsers.push({
+                      user: target,
+                      userInfo: targetInfoData,
+                      apartment: aptData,
+                    })
+                    resolve();
+                  }
+                });
+              } 
+            });
           });
-         
-        }
-      }));
-
-      
-      Promise.all(promises).then(() => {result(null, recUsers)});
-
-    }); 
+        }));
+        Promise.all(promises).then(() => {result(null, recUsers)});
+      }); 
+    });
   });
 }
+
+// recommend roommates to users with an apartment
+const recommendWithApt = (userId, apt, result) => {
+  Preference.findById(userId, (preferenceErr, preferenceData) => {
+    if (preferenceErr) {
+      result(preferenceErr, null);
+      return;
+    }
+      User.getAll((allUsersErr, allUsersData) => {
+        if (allUsersErr) {
+          result(allUsersErr, null);
+          return;
+        }
+
+        let recUsers = [];
+        // among all users, add the users to be recommened to recUsers
+        const promises = allUsersData.map(target => new Promise(resolve => {
+          const targetId = target.UserID;
+          if (targetId == userId) {
+            resolve();
+            return;
+          } 
+
+        Userinfo.findById(targetId, (targetInfoErr, targetInfoData) => {
+          if (targetInfoErr) {
+            result(targetInfoErr, null);
+            resolve();
+            return;
+          }
+          Ownership.findByUserId(targetId, (ownershipErr, ownershipData) => {
+            if (ownershipErr) {
+              if (ownershipErr.kind !== "not_found") {
+                result(ownershipErr, null);
+                resolve();
+                return;
+              }  
+              // ownership not found, target does not own an apartment
+              // check if user and target match, and if user and apartment match
+              if (checkUserMatch(preferenceData, targetInfoData) && checkAptMatch(apt, targetInfoData)) {
+                recUsers.push({
+                  user: target,
+                  userInfo: targetInfoData,
+                  apartment: null,
+                })
+              }
+              resolve();
+            } 
+          });
+        });
+      }));
+      Promise.all(promises).then(() => {result(null, recUsers)});
+    }); 
+
+  });
+}
+
 
 const checkUserMatch = (preference, targetInfo) => {
   console.log(preference.Gender === targetInfo.Gender);
@@ -98,4 +200,12 @@ const timeDiff = (time1, time2) => {
   const diff = Math.abs(time1 - time2);
   return Math.min(diff, 24 - diff);
 }
+
+const checkAptMatch = (apt, userInfo) => {
+  return apt.Price >= userInfo.BudgetLow && 
+          apt.Price <= userInfo.BudgetHigh && 
+          (apt.Parking > 0 || !userInfo.Parking)
+}
+
+
 
