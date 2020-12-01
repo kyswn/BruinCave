@@ -21,3 +21,22 @@
 .profile-padding{
     padding: 10px 30px;
 }
+
+.display-row {
+    display: flex;
+    align-items: center;
+    height: 44px;
+    font-size: 20px;
+    flex-direction: row;
+    padding-right: 24px;
+}
+
+.display-row .key {
+    width: 40%;
+    margin-right: 30px;
+    text-align: right;
+}
+
+.display-row .value {
+    flex: 1;
+}

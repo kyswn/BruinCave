@@ -26,7 +26,7 @@ function App() {
           <Route path='/signup' component={Signup} />
 
           <Route path='/profile' component={Profile} />
-          <Route path='/recommendJoe%20Bruin' component={ProfileDisplay} />
+          <Route path='/recommendProfile' component={ProfileDisplay} />
 
         </Switch>
       </Router>
