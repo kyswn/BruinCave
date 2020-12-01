@@ -32,3 +32,60 @@ Update the user info of user with UserID id; Pass a user JSON as body; Return a 
 
 - DELETE /users/[id]    
 delete the user with UserID id
+
+Preference JSON:
+{
+	"SleepStart": int,
+    "SleepEnd": int,
+    "Gender": string,
+    "HasPet": BOOLEAN,
+    "Description": string
+}
+
+- Post /preferences  
+Create a preference ; Pass a preference JSON as the body; return a preference JSON if success
+
+- GET /preferences    
+Retrieve all preferences; return an array of preference JSON
+
+- GET /preferences/[id]   
+Retrieve info of a single preference with UserID id; Return a preference JSON if success
+
+- PUT /preferences/[id]  
+Update the preference info of user with UserID id; Pass a preference JSON as body; Return a preference JSON after change if success
+
+- DELETE /preferences   
+Delete all preferences
+
+- DELETE /preferences/[id]    
+delete the preference with UserID id
+
+Note: Delete the preference only when the corresponding user is deleted. If trying to reset a preference profile, do PUT /preferences/[id] and pass in preference JSON with all entries set to null. 
+
+Ownership JSON:
+{
+	"UsrID": int,
+	"AptID": int
+}
+
+
+- Post /ownership  
+Create an ownership ; Pass an ownership JSON as the body; return a ownership JSON if success
+
+- GET /ownership/u/[id]  
+Retrieve ownerships info of UserID id; return an array of corresponding Aptid if success
+
+- GET /ownership/a/[id]  
+Retrieve ownerships info of Apt id; return an array of corresponding Usrid if success
+
+- DELETE /ownership/b/[Usrid]/[Aptid] 
+Delete ownership entry with corresponding userid and aptid
+
+- DELETE /ownership/u/[Usrid]
+Delete ownership entry with corresponding userid
+
+- DELETE /ownership/a/[Aptid] 
+Delete ownership entry with corresponding aptid
+
+-DELETE /ownership/
+DELETE all entries in the table
