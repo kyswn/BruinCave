@@ -1,41 +1,23 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "../../App.css";
 import RecommendationCard from "./RecommendationCard";
 
 export default function Recommend() {
-  
-  /*const [matches, setMacthes] = useState('');
-  const [loading, setLoading] = useState(true);
-  
-  useEffect(()=>{
-    (async () => {
-    try{
-    const response = await fetch('http://localhost:3000/users', {mode: 'no-cors'});
-    const data = response.headers.get("content-type");
-    
-    setMacthes(data)
-    setLoading(false);
-    }
-    catch(e){
-      console.log('incorretc')
-    }})();
-
-  }, []);*/
   const [state, setState] = useState({
     matchedUsers: [],
-    loading: true
-  })
+    loading: true,
+  });
 
   useEffect(() => {
     const fetchThings = async () => {
       const _userinfo = await fetch("http://localhost:3000/recommend/12");
-      const userinfojson = await _userinfo.json()
+      const userinfojson = await _userinfo.json();
       setState({
         matchedUsers: userinfojson,
-        loading: false
-      })
-    }
-  
+        loading: false,
+      });
+    };
+
     fetchThings();
   }, []);
 
@@ -43,17 +25,35 @@ export default function Recommend() {
     <section id="facilities">
       <div class="container">
         <div className="row card-padding">
-        {Array.from(Array(state.matchedUsers.length)).map((x, i)=>(<RecommendationCard name={state.loading?'loading':state.matchedUsers[0].user.Name}
-            major={state.loading?'loading':state.matchedUsers[i].user.Name}
-            gender={state.loading?'loading':state.matchedUsers[i].userInfo.Gender}
-            description={state.loading?'loading':state.matchedUsers[i].userInfo.Comment}
-            img="/images/user1.jpg"/>))}
-          
+          {Array.from(Array(state.matchedUsers.length)).map((x, i) => (
+            <RecommendationCard
+              name={state.loading ? "loading" : state.matchedUsers[0].user.Name}
+              major={
+                state.loading ? "loading" : state.matchedUsers[i].user.Name
+              }
+              gender={
+                state.loading
+                  ? "loading"
+                  : state.matchedUsers[i].userInfo.Gender
+              }
+              description={
+                state.loading
+                  ? "loading"
+                  : state.matchedUsers[i].userInfo.Comment
+              }
+              id={
+                state.loading
+                  ? "loading"
+                  : state.matchedUsers[i].userInfo.ID
+              }
+              img="/images/user1.jpg"
+            />
+          ))}
         </div>
       </div>
     </section>
   );
-};
+}
 /*
 
           <RecommendationCard

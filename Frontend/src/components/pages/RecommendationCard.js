@@ -26,7 +26,7 @@ const RecommendationCard = (props) => {
             <p class="card-text" style={{ fontFamily: "Roboto" }}>
               Description: {props.description}
             </p>
-            <a href={'/recommendProfile?name=' + props.name} class="card-link" style={{ fontFamily: "Roboto" }}>
+            <a href={'/recommendProfile?id=' + props.id} class="card-link" style={{ fontFamily: "Roboto" }}>
               View Profile
             </a>
           </div>
