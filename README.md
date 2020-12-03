@@ -83,16 +83,16 @@ Retrieve ownerships info of UserID id; return an array of corresponding Aptid if
 - GET /ownership/a/[id]  
 Retrieve ownerships info of Apt id; return an array of corresponding Usrid if success
 
-- DELETE /ownership/b/[Usrid]/[Aptid] 
+- DELETE /ownership/b/[Usrid]/[Aptid]   
 Delete ownership entry with corresponding userid and aptid
 
-- DELETE /ownership/u/[Usrid]
+- DELETE /ownership/u/[Usrid]   
 Delete ownership entry with corresponding userid
 
-- DELETE /ownership/a/[Aptid] 
+- DELETE /ownership/a/[Aptid]   
 Delete ownership entry with corresponding aptid
 
-- DELETE /ownership/
+- DELETE /ownership/  
 Delete all entries in the table
 
 Class Apartment:
