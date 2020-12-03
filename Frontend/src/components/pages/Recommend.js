@@ -10,7 +10,7 @@ export default function Recommend() {
 
   useEffect(() => {
     const fetchThings = async () => {
-      const _userinfo = await fetch("http://localhost:3000/recommend/12");
+      const _userinfo = await fetch("http://localhost:3000/recommend/1");
       const userinfojson = await _userinfo.json();
       setState({
         matchedUsers: userinfojson,
@@ -27,7 +27,7 @@ export default function Recommend() {
         <div className="row card-padding">
           {Array.from(Array(state.matchedUsers.length)).map((x, i) => (
             <RecommendationCard
-              name={state.loading ? "loading" : state.matchedUsers[0].user.Name}
+              name={state.loading ? "loading" : state.matchedUsers[i].user.Name}
               major={
                 state.loading ? "loading" : state.matchedUsers[i].user.Name
               }
