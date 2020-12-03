@@ -13,7 +13,7 @@ const Apt = function(apt) {
 };
 
 Apt.create = (newApt, result) => {
-    sql.query("INSERT INTO apartment SET ?", newApt, (err, res) => {
+    sql.query("INSERT INTO Apartment SET ?", newApt, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -26,7 +26,7 @@ Apt.create = (newApt, result) => {
 };
 
 Apt.findOne = (AptId, result) => {
-    sql.query(`SELECT * FROM apartment WHERE ApartmentID = ${AptId}`, (err, res) => {
+    sql.query(`SELECT * FROM Apartment WHERE ApartmentID = ${AptId}`, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -46,7 +46,7 @@ Apt.findOne = (AptId, result) => {
 
 Apt.updateOne = (id, apt, result) => {
     sql.query(
-        "UPDATE apartment SET Name = ?, Bedroom = ?, Bathroom = ?, Parking = ?, Description = ?,\
+        "UPDATE Apartment SET Name = ?, Bedroom = ?, Bathroom = ?, Parking = ?, Description = ?,\
         Location = ?, Amenity = ?, Price = ?, Comment = ? where ApartmentID = ?", 
         [apt.Name, apt.Bedroom, apt.Bathroom, apt.Parking, apt.Description, apt.Location,
         apt.Amenity, apt.Price, apt.Comment, id],
@@ -69,7 +69,7 @@ Apt.updateOne = (id, apt, result) => {
 };
 
 Apt.remove = (id, result) => {
-    sql.query("DELETE FROM apartment WHERE ApartmentID = ?", id, (err, res) => {
+    sql.query("DELETE FROM Apartment WHERE ApartmentID = ?", id, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);

@@ -27,7 +27,7 @@ export default function Recommend() {
         <div className="row card-padding">
           {Array.from(Array(state.matchedUsers.length)).map((x, i) => (
             <RecommendationCard
-              name={state.loading ? "loading" : state.matchedUsers[0].user.Name}
+              name={state.loading ? "loading" : state.matchedUsers[i].user.Name}
               major={
                 state.loading ? "loading" : state.matchedUsers[i].user.Name
               }
