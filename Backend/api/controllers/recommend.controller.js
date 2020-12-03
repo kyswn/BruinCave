@@ -47,7 +47,6 @@ exports.recommend = (req, res) => {
         }
       });
     });
-
   });
 }
 
@@ -70,8 +69,8 @@ const recommendWithoutApt = (userId, result) => {
         }
 
         let recUsers = [];
-        // among all users, add the users to be recommened to recUsers
-        const promises = allUsersData.map(target => new Promise(resolve => {
+        // among all users, add the users to be recommended to recUsers
+        const promises = allUsersData.map(target => new Promise((resolve, reject) => {
           const targetId = target.UserID;
           if (targetId == userId) {
             resolve();
@@ -80,15 +79,13 @@ const recommendWithoutApt = (userId, result) => {
 
           Userinfo.findById(targetId, (targetInfoErr, targetInfoData) => {
             if (targetInfoErr) {
-              result(targetInfoErr, null);
-              resolve();
+              reject(targetInfoErr);
               return;
             }
             Ownership.findByUserId(targetId, (ownershipErr, ownershipData) => {
               if (ownershipErr) {
                 if (ownershipErr.kind !== "not_found") {
-                  result(ownershipErr, null);
-                  resolve();
+                  reject(ownershipErr);
                   return;
                 }  
                 // ownership not found, target does not own an apartment
@@ -105,8 +102,7 @@ const recommendWithoutApt = (userId, result) => {
                 // target owns an apartment
                 Apt.findOne(ownershipData[0].AptID, (aptErr, aptData) => {
                   if (aptErr) {
-                    result(aptErr, null);
-                    resolve();
+                    reject(aptErr);
                     return;
                   }
                   // check if user and target match, and if user and apartment match
@@ -123,7 +119,7 @@ const recommendWithoutApt = (userId, result) => {
             });
           });
         }));
-        Promise.all(promises).then(() => {result(null, recUsers)});
+        Promise.all(promises).then(() => {result(null, recUsers)}, err => {result(err, null)});
       }); 
     });
   });
@@ -144,7 +140,7 @@ const recommendWithApt = (userId, apt, result) => {
 
         let recUsers = [];
         // among all users, add the users to be recommened to recUsers
-        const promises = allUsersData.map(target => new Promise(resolve => {
+        const promises = allUsersData.map(target => new Promise((resolve, reject) => {
           const targetId = target.UserID;
           if (targetId == userId) {
             resolve();
@@ -153,15 +149,13 @@ const recommendWithApt = (userId, apt, result) => {
 
         Userinfo.findById(targetId, (targetInfoErr, targetInfoData) => {
           if (targetInfoErr) {
-            result(targetInfoErr, null);
-            resolve();
+            reject(targetInfoErr);
             return;
           }
           Ownership.findByUserId(targetId, (ownershipErr, ownershipData) => {
             if (ownershipErr) {
               if (ownershipErr.kind !== "not_found") {
-                result(ownershipErr, null);
-                resolve();
+                reject(ownershipErr);
                 return;
               }  
               // ownership not found, target does not own an apartment
@@ -173,12 +167,12 @@ const recommendWithApt = (userId, apt, result) => {
                   apartment: null,
                 })
               }
-              resolve();
             } 
+            resolve();
           });
         });
       }));
-      Promise.all(promises).then(() => {result(null, recUsers)});
+      Promise.all(promises).then(() => {result(null, recUsers)}, err => {result(err, null)});
     }); 
 
   });
