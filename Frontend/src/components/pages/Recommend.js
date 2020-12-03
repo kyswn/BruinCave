@@ -10,7 +10,7 @@ export default function Recommend() {
 
   useEffect(() => {
     const fetchThings = async () => {
-      const _userinfo = await fetch("http://localhost:3000/recommend/1");
+      const _userinfo = await fetch("http://localhost:3000/recommend/5");
       const userinfojson = await _userinfo.json();
       setState({
         matchedUsers: userinfojson,
@@ -28,9 +28,6 @@ export default function Recommend() {
           {Array.from(Array(state.matchedUsers.length)).map((x, i) => (
             <RecommendationCard
               name={state.loading ? "loading" : state.matchedUsers[i].user.Name}
-              major={
-                state.loading ? "loading" : state.matchedUsers[i].user.Name
-              }
               gender={
                 state.loading
                   ? "loading"
@@ -47,6 +44,7 @@ export default function Recommend() {
                   : state.matchedUsers[i].userInfo.ID
               }
               img={`/images/user${state.matchedUsers[i].userInfo.ID}.jpg`}
+              hasApartment={state.matchedUsers[i].apartment !== null}
             />
           ))}
         </div>

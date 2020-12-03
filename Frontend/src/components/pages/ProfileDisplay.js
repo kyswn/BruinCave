@@ -10,12 +10,25 @@ export default function ProfileDisplay() {
   const {search} = useLocation()
   const query = qs.parse(search && search.substr(1))
   const [userInfo, setUserInfo] = useState({})
+  const [apartment, setApartment] = useState({})
 
   useEffect(() => {
     const fetchThings = async () => {
       const _userinfo = await fetch("http://localhost:3000/userinfo/"+query.id);
       const userinfojson = await _userinfo.json();
       setUserInfo(userinfojson)
+
+      const _ownership = await fetch("http://localhost:3000/ownership/u/"+query.id);
+      const ownershipjson = await _ownership.json(); 
+
+
+      if (ownershipjson[0] && ownershipjson[0].AptID) {
+        // console.log(ownershipjson[0].AptID)
+        const _apartment = await fetch("http://localhost:3000/apt/"+ownershipjson[0].AptID);
+        const apartmentjson = await _apartment.json();
+        console.log(apartmentjson)
+        setApartment(apartmentjson)
+      }
     };
 
     fetchThings();
@@ -32,8 +45,7 @@ export default function ProfileDisplay() {
           >
             Back
           </Button>
-          {query.id &&
-          <span className='key' style={{fontSize: "30px", float: 'right', marginTop: 10, marginRight: 40}}>{query.id}</span>}
+          <div style={{textAlign: "center", fontSize: "2rem"}}>User Info</div>
           <div className='display-row' style={{marginTop: 30}}>
             <label className='key'>SleepStart:</label>
             <label className='value'>{userInfo.SleepStart}</label>
@@ -68,6 +80,38 @@ export default function ProfileDisplay() {
           </div>
         </div>
       </div>
+      { Object.keys(apartment).length !== 0? (
+        <div className="form-container" style={{height: 'auto', width: 600}}>
+        <div className="form-content" style={{paddingBottom: 40}}>
+          <div style={{textAlign: "center", fontSize: "2rem"}}>Apartment Info</div>
+          <div className='display-row' style={{marginTop: 30}}>
+            <label className='key'>Location:</label>
+            <label className='value'>{apartment.Location}</label>
+          </div>
+          <div className='display-row'>
+            <label className='key'>Bedroom:</label>
+            <label className='value'>{apartment.Bedroom}</label>
+          </div>
+          <div className='display-row'>
+            <label className='key'>Bathroom:</label>
+            <label className='value'>{apartment.Bathroom}</label>
+          </div>
+          <div className='display-row'>
+            <label className='key'>Parking:</label>
+            <label className='value'>{apartment.Parking}</label>
+          </div>
+          <div className='display-row'>
+            <label className='key'>Description:</label>
+            <label className='value'>{apartment.Description}</label>
+          </div>
+          <div className='display-row'>
+            <label className='key'>Price:</label>
+            <label className='value'>{apartment.Price}</label>
+          </div>
+        </div>
+      </div>) : null
+      }
+      
     </section>
   );
 }

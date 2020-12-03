@@ -2,6 +2,7 @@ import React from "react";
 //import Button from 'react-bootstrap/Button';
 import "../../App.css";
 import "./RecommendationCard.css";
+import HomeIcon from '@material-ui/icons/Home';
 const RecommendationCard = (props) => {
   return (
     <>
@@ -18,9 +19,6 @@ const RecommendationCard = (props) => {
               {props.name}
             </h5>
             <p class="card-text" style={{ fontFamily: "Roboto" }}>
-              Major: {props.major}
-            </p>
-            <p class="card-text" style={{ fontFamily: "Roboto" }}>
               Gender: {props.gender}
             </p>
             <p class="card-text" style={{ fontFamily: "Roboto" }}>
@@ -29,6 +27,7 @@ const RecommendationCard = (props) => {
             <a href={'/recommendProfile?id=' + props.id} class="card-link" style={{ fontFamily: "Roboto" }}>
               View Profile
             </a>
+            {props.hasApartment? <HomeIcon style={{marginLeft: 120}}></HomeIcon> : null}
           </div>
         </div>
       </div>

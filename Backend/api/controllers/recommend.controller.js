@@ -96,8 +96,8 @@ const recommendWithoutApt = (userId, result) => {
                     userInfo: targetInfoData,
                     apartment: null,
                   })
-                  resolve();
                 }
+                resolve();
               } else {
                 // target owns an apartment
                 Apt.findOne(ownershipData[0].AptID, (aptErr, aptData) => {
@@ -112,8 +112,8 @@ const recommendWithoutApt = (userId, result) => {
                       userInfo: targetInfoData,
                       apartment: aptData,
                     })
-                    resolve();
                   }
+                  resolve();
                 });
               } 
             });
@@ -180,10 +180,6 @@ const recommendWithApt = (userId, apt, result) => {
 
 
 const checkUserMatch = (preference, targetInfo) => {
-  console.log(preference.Gender === targetInfo.Gender);
-  console.log(preference.hasPet || !targetInfo.Pet);
-  console.log(timeDiff(preference.SleepStart, targetInfo.SleepStart) <= 2);
-  console.log(preference.Gender === targetInfo.Gender);
   return preference.Gender === targetInfo.Gender &&
         (preference.hasPet || !targetInfo.Pet) && 
         timeDiff(preference.SleepStart, targetInfo.SleepStart) <= 2 &&
