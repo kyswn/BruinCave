@@ -33,6 +33,31 @@ Update the user info of user with UserID id; Pass a user JSON as body; Return a 
 - DELETE /users/[id]    
 delete the user with UserID id
 
+Userinfo JSON:
+{
+  ID: primary key
+  SleepStart: int,
+	SleepEnd: int,
+	BudgetLow: int,
+	BudgetHigh: int,
+	Gender: string,
+	Pet: boolean,
+	Parking: boolean,
+	Comment: string,
+}
+
+- GET /userinfo/[id]
+Get information of user of corresponding userID .
+
+- POST /userinfo
+Add new user information
+
+- DELETE /userinfo/[id]
+Delete user information of id
+
+- PUT /userinfo/[id]
+Update the user id
+
 Preference JSON:
 {
 	"SleepStart": int,

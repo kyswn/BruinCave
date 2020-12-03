@@ -10,7 +10,7 @@ export default function Recommend() {
 
   useEffect(() => {
     const fetchThings = async () => {
-      const _userinfo = await fetch("http://localhost:3000/recommend/12");
+      const _userinfo = await fetch("http://localhost:3000/recommend/1");
       const userinfojson = await _userinfo.json();
       setState({
         matchedUsers: userinfojson,
@@ -46,7 +46,7 @@ export default function Recommend() {
                   ? "loading"
                   : state.matchedUsers[i].userInfo.ID
               }
-              img="/images/user1.jpg"
+              img={`/images/user${state.matchedUsers[i].userInfo.ID}.jpg`}
             />
           ))}
         </div>
