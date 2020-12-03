@@ -4,10 +4,11 @@
 Try: https://stackoverflow.com/questions/50093144/mysql-8-0-client-does-not-support-authentication-protocol-requested-by-server
 
 ## API:
+Class User: 
 
 User JSON :  
 {       
-  "Name": string,            
+  "Name": string,              
   "Password": string,      
   "Contact": int,         
   "Email":  string,         
@@ -33,38 +34,15 @@ Update the user info of user with UserID id; Pass a user JSON as body; Return a 
 - DELETE /users/[id]    
 delete the user with UserID id
 
-Userinfo JSON:
-{
-  ID: primary key
-  SleepStart: int,
-	SleepEnd: int,
-	BudgetLow: int,
-	BudgetHigh: int,
-	Gender: string,
-	Pet: boolean,
-	Parking: boolean,
-	Comment: string,
-}
+Class Preference: 
 
-- GET /userinfo/[id]
-Get information of user of corresponding userID .
-
-- POST /userinfo
-Add new user information
-
-- DELETE /userinfo/[id]
-Delete user information of id
-
-- PUT /userinfo/[id]
-Update the user id
-
-Preference JSON:
-{
-	"SleepStart": int,
-    "SleepEnd": int,
-    "Gender": string,
-    "HasPet": BOOLEAN,
-    "Description": string
+Preference JSON:  
+{   
+  "SleepStart": int,   
+  "SleepEnd": int,  
+  "Gender": string,   
+  "HasPet": BOOLEAN,  
+  "Description": string   
 }
 
 - Post /preferences  
@@ -87,10 +65,12 @@ delete the preference with UserID id
 
 Note: Delete the preference only when the corresponding user is deleted. If trying to reset a preference profile, do PUT /preferences/[id] and pass in preference JSON with all entries set to null. 
 
-Ownership JSON:
-{
-	"UsrID": int,
-	"AptID": int
+Class Ownership: 
+
+Ownership JSON: 
+{   
+  "UsrID": int,   
+  "AptID": int  
 }
 
 
@@ -103,14 +83,76 @@ Retrieve ownerships info of UserID id; return an array of corresponding Aptid if
 - GET /ownership/a/[id]  
 Retrieve ownerships info of Apt id; return an array of corresponding Usrid if success
 
-- DELETE /ownership/b/[Usrid]/[Aptid] 
+- DELETE /ownership/b/[Usrid]/[Aptid]   
 Delete ownership entry with corresponding userid and aptid
 
-- DELETE /ownership/u/[Usrid]
+- DELETE /ownership/u/[Usrid]   
 Delete ownership entry with corresponding userid
 
-- DELETE /ownership/a/[Aptid] 
+- DELETE /ownership/a/[Aptid]   
 Delete ownership entry with corresponding aptid
 
--DELETE /ownership/
-DELETE all entries in the table
+- DELETE /ownership/  
+Delete all entries in the table
+
+Class Apartment:
+
+Apt JSON :  
+{       
+  "Name": string,            
+  "Bedroom": int,      
+  "Bathroom": int,         
+  "Parking":  int,         
+  "Description" : string,   
+  "Location" : string,  
+  "Amenity" : string,   
+  "Price" : int,  
+  "Comment" : string  
+}  
+
+- POST /apt    
+Create an apartment; Pass in an apt JSON as the body; return an apt JSON if success
+
+- GET /apt/[id]   
+Retrieve info of a single apartment with aptID id; Return an apt JSON if success
+
+- PUT /apt/[id]  
+Update the apartment info with aptID id; Pass in an apt JSON as the body; Return an apt JSON after change if success
+
+- DELETE /apt/[id]    
+delete the apartment with aptID id
+
+Class Userinfo: 
+
+Userinfo JSON :  
+{       
+  "SleepStart": int,            
+  "SleepEnd": int,      
+  "BudgetLow": int,   
+  "BudgetHigh": int,  
+  "Gender": string,         
+  "Pet":  BOOLEAN,   
+  "Parking":  BOOLEAN,     
+  "Comment" : string     
+} 
+
+- Post /userinfo  
+Create a userinfo ; Pass in a Userinfo JSON as the body; return a Userinfo JSON if success
+
+- GET /userinfo/[id]   
+Retrieve a userifo with UserID id; Return a Userinfo JSON if success
+
+- PUT /userinfo/[id]  
+Update the userinfo with UserID id; Pass in a Userinfo JSON as body; Return a Userinfo JSON after change if success
+
+- DELETE /userinfo/[id]    
+delete the userinfo with UserID id
+
+Recommend: 
+
+- GET /recommend/[id]   
+Retrive a list of users that we recommend to the target user with UserID id(excluding the target user him/herself). Pass in an integer, return an array
+of JSON object consists of User JSON, Userinfo JSON, and apt JSON. 
+If the target user doesn't has an apt, it will be recommended with both users who have apartment and users who don't have apt(in this case, returned apt JSON would be null); if the target user has an apt, it will be recommended only with users who don't have an apt. 
+
+
