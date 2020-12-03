@@ -36,13 +36,13 @@ delete the user with UserID id
 
 Class Preference: 
 
-Preference JSON:
+Preference JSON:  
 {
-	"SleepStart": int,
-    "SleepEnd": int,
-    "Gender": string,
-    "HasPet": BOOLEAN,
-    "Description": string
+  "SleepStart": int,   
+  "SleepEnd": int,  
+  "Gender": string,   
+  "HasPet": BOOLEAN,  
+  "Description": string   
 }
 
 - Post /preferences  
@@ -69,7 +69,7 @@ Class Ownership:
 
 Ownership JSON: 
 {
-  "UsrID": int, 
+  "UsrID": int,   
   "AptID": int  
 }
 
@@ -150,7 +150,7 @@ delete the userinfo with UserID id
 
 Recommend: 
 
-- GET /recommend/[id]
+- GET /recommend/[id] 
 Retrive a list of users that we recommend to the target user with UserID id(excluding the target user him/herself). Pass in an integer, return an array
 of JSON object consists of User JSON, Userinfo JSON, and apt JSON. 
 If the target user doesn't has an apt, it will be recommended with both users who have apartment and users who don't have apt(in this case, returned apt JSON would be null); if the target user has an apt, it will be recommended only with users who don't have an apt. 
