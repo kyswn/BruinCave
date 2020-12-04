@@ -21,7 +21,8 @@ export default function ProfileDisplay() {
     Gender: 'man',
     Pet: 1,
     Parking: 1,
-    Comment: 'easygoing'
+    Comment: 'easygoing',
+    ImageURL: ''
   })
   const [apartment, setApartment] = useState({})
 

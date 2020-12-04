@@ -8,7 +8,8 @@ const Userinfo = function(userinfo) {
     this.Gender = userinfo.Gender,
     this.Pet = userinfo.Pet,
     this.Parking = userinfo.Parking,
-    this.Comment = userinfo.Comment
+    this.Comment = userinfo.Comment,
+    this.ImageURL = userinfo.ImageURL
 };
 
 Userinfo.create = (newUserinfo, result) => {
@@ -45,9 +46,9 @@ Userinfo.findById = (UserId, result) => {
 Userinfo.updateById = (id, userinfo, result) => {
     sql.query(
         "UPDATE UserInfo SET SleepStart = ?, SleepEnd = ?, BudgetLow = ?, BudgetHigh = ?, \
-        Gender = ?, Pet = ?, Parking = ?, Comment = ? WHERE ID = ?", 
+        Gender = ?, Pet = ?, Parking = ?, Comment = ?, ImageURL = ? WHERE ID = ?", 
         [userinfo.SleepStart, userinfo.SleepEnd, userinfo.BudgetLow, userinfo.BudgetHigh,
-        userinfo.Gender, userinfo.Pet, userinfo.Parking, userinfo.Comment, id],
+        userinfo.Gender, userinfo.Pet, userinfo.Parking, userinfo.Comment, userinfo.ImageURL, id],
         (err, res) => {
             if (err) {
                 console.log("error: ", err);

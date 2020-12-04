@@ -16,7 +16,8 @@ exports.create = (req,res) => {
         Gender: req.body.Gender,
         Pet: req.body.Pet,
         Parking: req.body.Parking,
-        Comment: req.body.Comment
+        Comment: req.body.Comment,
+        ImageURL: req.body.ImageURL
     });
 
     Userinfo.create(userinfo, (err,data) => {
