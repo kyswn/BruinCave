@@ -1,4 +1,7 @@
 import React from 'react';
+import * as filestack from 'filestack-js';
+
+const imageUploadClient = filestack.init('AQrg5VT6wSQCQthwSu6Ndz');
 
 const EditInput = ({value, onChange, edit}) => {
   return (
@@ -42,6 +45,12 @@ export function Profile(props) {
     Description: "nice apartment"
   })
 
+  const uploadOptions = {
+    onUploadDone: response => {
+      console.log(response.filesUploaded[0].url);
+    }
+  };
+
   React.useEffect(() => {
     const fetchThings = async () => {
       const _userinfo = await fetch("http://localhost:3000/userinfo/1");
@@ -49,6 +58,8 @@ export function Profile(props) {
       const userjson = await _user.json();
       const userinfojson = await _userinfo.json();
     }
+    imageUploadClient.picker(uploadOptions).open();
+
 
   }, []);
 
