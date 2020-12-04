@@ -22,17 +22,13 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  
   color: #fff;
   font-size: 100px;
 }
 
 .recommend {
-  background-image: url('/images/recommend.jpg');
-  background-position: center;
-  background-size: fill;
-  background-repeat: no-repeat;
-  color: #fff;
-  font-size: 100px;
+  background: #dbe5e6;
 }
 
 .login {
@@ -44,10 +40,14 @@
 }
 
 .signup {
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
   background-image: url('/images/signup-bgd.jpg');
   background-position: center;
-  background-size: cover;
   background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
   color: #fff;
 }
 
@@ -81,6 +81,7 @@
 #facilities {
   background-color: #dbe5e6;
   padding: 30px 0px;
+  min-height: 100vh;
 }
 
 #facilities h1{

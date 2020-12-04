@@ -43,6 +43,7 @@ exports.findAll = (req, res) => {
 
 // Find a single user with a UserrId
 exports.findOne = (req, res) => {
+    console.log("GET request at users/userID received");
     User.findById(req.params.UserID, (err, data) => {
         if (err) {
           if (err.kind === "not_found") {

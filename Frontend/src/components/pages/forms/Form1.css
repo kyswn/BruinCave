@@ -1,7 +1,7 @@
 .form-container {
   margin: 100px auto;
   width: 500px;
-  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2); */
   position: relative;
   border-radius: 10px;
   height: 630px;
@@ -12,7 +12,7 @@
 .form-container-small {
   margin: 100px auto;
   width: 500px;
-  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2); */
   position: relative;
   border-radius: 10px;
   height: 420px;
@@ -66,9 +66,9 @@
 }
 
 .form-content {
-  border-radius: 0 10px 10px 0;
+  border-radius: 10px;
   position: relative;
-  background: rgba(28, 40, 51,0.8);
+  background: rgba(28, 40, 51, 0.9);
 }
 
 .form {
@@ -115,7 +115,7 @@
   padding-left: 10px;
   outline: none;
   border-radius: 2px;
-  height: 40px;
+  height: 25px;
   width: 100%;
   border: none;
   margin-top: 5px;

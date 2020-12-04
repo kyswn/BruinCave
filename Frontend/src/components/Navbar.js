@@ -117,17 +117,6 @@ function Navbar() {
                 Recommend
               </Link>
             </li>
-            
-            <li className="nav-item">
-              <Link
-                to="/profile"
-                className={classProfile()}
-                onClick={closeMobileMenu}
-                style={{ fontFamily: "Roboto" }}
-              >
-                Profile
-              </Link>
-            </li>
 
             <li>
               <Link
@@ -148,13 +137,12 @@ function Navbar() {
                 Signup
               </Link>
             </li>
-
-            
-            
           </ul>
           {button && returnLogin()}
           {button && returnSignup()}
+
         </div>
+        <Button buttonStyle="btn--outline" buttonLink='/profile'>Profile</Button>
       </nav>
     </>
   );
