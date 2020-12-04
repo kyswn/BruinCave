@@ -13,7 +13,7 @@ const FormUserDetails1 = ({ submitForm, profile, onChange }) => {
   return (
     <>
         <h1>
-          Sign up
+          <b>Sign up</b>
         </h1>
         <div className='form-inputs'>
           <label className='form-label'>Gender</label>
@@ -26,6 +26,7 @@ const FormUserDetails1 = ({ submitForm, profile, onChange }) => {
             onChange={handleChange}
           />
           {errors.password && <p>{errors.password}</p>}
+          <br/>
         </div>
         <div className='form-inputs'>
           <label className='form-label'>Whats your minimum budget?</label>
@@ -37,6 +38,7 @@ const FormUserDetails1 = ({ submitForm, profile, onChange }) => {
             value={values.password}
             onChange={handleChange}
           />
+          <br/>
         </div>
         <div className='form-inputs'>
           <label className='form-label'>Whats your maximun budget?</label>
@@ -48,6 +50,7 @@ const FormUserDetails1 = ({ submitForm, profile, onChange }) => {
             value={values.password}
             onChange={handleChange}
           />
+          <br/>
         </div>
         <div className='form-inputs'>
           <label className='form-label'>Do you already have an apartment?</label>
@@ -59,7 +62,9 @@ const FormUserDetails1 = ({ submitForm, profile, onChange }) => {
             value={values.password}
             onChange={handleChange}
           />
+          
           {errors.password && <p>{errors.password}</p>}
+          <br/>
         </div>
         
       </>

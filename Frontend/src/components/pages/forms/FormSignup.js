@@ -25,6 +25,7 @@ const FormSignup = ({ submitForm }) => {
             onChange={handleChange}
           />
           {errors.username && <p>{errors.username}</p>}
+          <br/>
         </div>
         <div className='form-inputs'>
           <label className='form-label'>UCLA Email</label>
@@ -37,6 +38,7 @@ const FormSignup = ({ submitForm }) => {
             onChange={handleChange}
           />
           {errors.email && <p>{errors.email}</p>}
+          <br/>
         </div>
         <div className='form-inputs'>
           <label className='form-label'>Password</label>
@@ -49,6 +51,7 @@ const FormSignup = ({ submitForm }) => {
             onChange={handleChange}
           />
           {errors.password && <p>{errors.password}</p>}
+          <br/>
         </div>
         <div className='form-inputs'>
           <label className='form-label'>Confirm Password</label>
@@ -61,6 +64,7 @@ const FormSignup = ({ submitForm }) => {
             onChange={handleChange}
           />
           {errors.password2 && <p>{errors.password2}</p>}
+          <br/>
         </div>
         
         

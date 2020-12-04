@@ -24,6 +24,7 @@ export class Login extends React.Component {
             name='email'
             placeholder='Enter your email'
           />
+          <br/>
         </div>
         <div className='form-inputs'>
           <label className='form-label'>Password</label>

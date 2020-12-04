@@ -13,7 +13,7 @@ const ApartmentInfo2 = ({ submitForm, profile, onChange }) => {
   return (
     <>
         <h1>
-          Sign up
+          <b>Sign up</b>
         </h1>
         <div className='form-inputs'>
           <label className='form-label'>Price of each room? </label>
@@ -25,6 +25,7 @@ const ApartmentInfo2 = ({ submitForm, profile, onChange }) => {
             value={values.int}
             onChange={handleChange}
           />
+          <br/>
         </div>
         <div className='form-inputs'>
           <label className='form-label'>Where is your apartment located?</label>
@@ -36,6 +37,7 @@ const ApartmentInfo2 = ({ submitForm, profile, onChange }) => {
             value={values.string}
             onChange={handleChange}
           />
+          <br/>
         </div>
         <div className='form-inputs'>
           <label className='form-label'>Amenities?</label>
@@ -47,6 +49,7 @@ const ApartmentInfo2 = ({ submitForm, profile, onChange }) => {
             value={values.string}
             onChange={handleChange}
           />
+          <br/>
         </div>
         <div className='form-inputs'>
           <label className='form-label'>Any comments?</label>
@@ -57,6 +60,7 @@ const ApartmentInfo2 = ({ submitForm, profile, onChange }) => {
             value={values.string}
             onChange={handleChange}
           />
+          <br/>
         </div>
         
       </>
