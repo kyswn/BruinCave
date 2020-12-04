@@ -11,6 +11,7 @@ const EditInput = ({value, onChange, edit}) => {
       className='value form-input'
       value={value}
       onChange={event => onChange(event.target.value)}
+      style={{height:25}}
     /> : <div className='value'>{value}</div>
   )
 }
@@ -30,13 +31,13 @@ export function Profile(props) {
     Comment: 'easygoing',
     imageURL: '',
   })
-  const id = ''//需要先知道id
+  const id = '3'//需要先知道id here
   const [preference, setPreference] = useState({
     edit: false,
     SleepStart: 0,
     SleepEnd: 8,
     Gender: 'man',
-    Pet: 1,
+    HasPet: 1,
   })
 
   const [apartment, setApartment] = useState({
@@ -141,7 +142,7 @@ export function Profile(props) {
             <div className='key'>Comment:</div>
             <EditInput value={userInfo.Comment} edit={userInfo.edit}
                        onChange={v => setUserInfo({...userInfo, Comment: v})}/>
-          </div>  
+          </div>
       </div>
       <div className="form-content" style={{paddingBottom: 20, marginTop: 20}}>
           <div style={{textAlign: "center", fontSize: "2rem"}}>Preference
@@ -173,8 +174,8 @@ export function Profile(props) {
             </div>
             <div className='display-row'>
               <div className='key'>Pet:</div>
-              <EditInput value={preference.Pet} edit={preference.edit}
-                        onChange={v => setPreference({...preference, Pet: v})}/>
+              <EditInput value={preference.HasPet} edit={preference.edit}
+                        onChange={v => setPreference({...preference, HasPet: v})}/>
             </div>
           </div>
           <div className="form-content" style={{paddingBottom: 20, marginTop: 20}}>
@@ -218,9 +219,9 @@ export function Profile(props) {
           </div>
         </div>
 
-        
 
-        
+
+
     </div>
   );
 }

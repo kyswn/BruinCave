@@ -21,7 +21,7 @@ function Signup() {
   const handleProfileChange = (fieldId, value) => {
       var temp = profile
       temp[fieldId] = value
-      setProfile(...profile, ([fieldId]: value))
+      setProfile({...profile, [fieldId]: value})
       // profile = temp
       console.log(profile)
 
