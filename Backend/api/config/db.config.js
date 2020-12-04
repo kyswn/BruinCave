@@ -1,7 +1,7 @@
 //write your own config here
 module.exports = {
-  HOST: "localhost",
+  HOST: "127.0.0.1",
   USER: "root",
-  PASSWORD: "Nfls20110909",
+  PASSWORD: "G20110702dwh",
   DB: "main"
 }; 
