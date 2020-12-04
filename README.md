@@ -1,4 +1,4 @@
-## Important Directory Structure
+## Important Directories Structure
 
 - Backend/  
   - api/
