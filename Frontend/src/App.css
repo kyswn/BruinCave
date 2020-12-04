@@ -84,6 +84,15 @@
   min-height: 100vh;
 }
 
+#facilities1 {
+  background-image: url('/images/about-us.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 30px 0px;
+  min-height: 100vh;
+}
+
 #facilities h1{
   font-weight: 900;
   font-size: 34px;

@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import {get, put} from "../../utils/request";
 import * as filestack from 'filestack-js';
 
 const imageUploadClient = filestack.init('AQrg5VT6wSQCQthwSu6Ndz');
+
 
 const EditInput = ({value, onChange, edit}) => {
   return (
@@ -15,7 +17,7 @@ const EditInput = ({value, onChange, edit}) => {
 
 
 export function Profile(props) {
-  const [userInfo, setUserInfo] = React.useState({
+  const [userInfo, setUserInfo] = useState({
     edit: false,
     ID: 1,
     SleepStart: 0,
@@ -27,8 +29,8 @@ export function Profile(props) {
     Parking: 1,
     Comment: 'easygoing'
   })
-
-  const [preference, setPreference] = React.useState({
+  const id = ''//需要先知道id
+  const [preference, setPreference] = useState({
     edit: false,
     SleepStart: 0,
     SleepEnd: 8,
@@ -36,7 +38,7 @@ export function Profile(props) {
     Pet: 1,
   })
 
-  const [apartment, setApartment] = React.useState({
+  const [apartment, setApartment] = useState({
     edit: false,
     Location: "111 Bruin Ave, Apt 103",
     Bedroom: 2,
@@ -44,23 +46,30 @@ export function Profile(props) {
     Parking: 1,
     Description: "nice apartment"
   })
+  
+  const updateUserinfo = () => {
+    const {edit, ...data} = userInfo
+    put('/userinfo/' + id, data)
+  }
+  const updatePreferences = () => {
+    const {edit, ...data} = preference
+    put('/preferences/' + id, data)
+  }
+  const updateApartment = () => {
+    const {edit, ...data} = apartment
+    put('/apt/' + id, data)
+  }
+  useEffect(() => {
 
-  const uploadOptions = {
-    onUploadDone: response => {
-      console.log(response.filesUploaded[0].url);
-    }
-  };
-
-  React.useEffect(() => {
-    const fetchThings = async () => {
-      const _userinfo = await fetch("http://localhost:3000/userinfo/1");
-      const _user = await fetch("http://localhost:3000/users/1");
-      const userjson = await _user.json();
-      const userinfojson = await _userinfo.json();
-    }
-    imageUploadClient.picker(uploadOptions).open();
-
-
+    get('/userinfo/' + id).then(res => {
+      setUserInfo(res)
+    })
+    get('/preferences/' + id).then(res => {
+      setPreference(res)
+    })
+    get('/apt/' + id).then(res => {
+      setApartment(res)
+    })
   }, []);
 
   return (
@@ -68,10 +77,15 @@ export function Profile(props) {
       <div className="form-container" style={{height: 'auto',width:600}}>
         <div className="form-content" style={{paddingBottom: 20}}>
           <div style={{textAlign: "center", fontSize: "2rem"}}>UserInfo
-            <span className='edit' onClick={() => setUserInfo({
-              ...userInfo,
-              edit: !userInfo.edit
-            })}>{userInfo.edit ? 'Save' : 'Edit'}</span>
+            <span className='edit' onClick={() => {
+              if (userInfo.edit) {
+                updateUserinfo()
+              }
+              setUserInfo({
+                ...userInfo,
+                edit: !userInfo.edit
+              })
+            }}>{userInfo.edit ? 'save' : 'edit'}</span>
           </div>
           <div className='display-row'>
             <div className='key'>SleepStart:</div>
@@ -117,10 +131,15 @@ export function Profile(props) {
       <div className="form-content" style={{paddingBottom: 20, marginTop: 20}}>
           <div style={{textAlign: "center", fontSize: "2rem"}}>Preference
               <span className='edit'
-                    onClick={() => setPreference({
-                      ...preference,
-                      edit: !preference.edit
-                    })}>{preference.edit ? 'Save' : 'Edit'}</span>
+                    onClick={() => {
+                      if (preference.edit) {
+                        updatePreferences()
+                      }
+                      setPreference({
+                        ...preference,
+                        edit: !preference.edit
+                      })
+                    }}>{preference.edit ? 'Save' : 'Edit'}</span>
             </div>
             <div className='display-row'>
               <div className='key'>SleepStart:</div>
@@ -146,10 +165,15 @@ export function Profile(props) {
           <div className="form-content" style={{paddingBottom: 20, marginTop: 20}}>
           <div style={{textAlign: "center",fontSize: "2rem"}}>Apartment
               <span className='edit'
-                    onClick={() => setApartment({
-                      ...apartment,
-                      edit: !apartment.edit
-                    })}>{apartment.edit ? 'Save' : 'Edit'}</span>
+                    onClick={() => {
+                      if (apartment.edit) {
+                        updateApartment()
+                      }
+                      setApartment({
+                        ...apartment,
+                        edit: !apartment.edit
+                      })
+                    }}>{apartment.edit ? 'Save' : 'Edit'}</span>
             </div>
             <div className='display-row'>
               <div className='key'>Location:</div>

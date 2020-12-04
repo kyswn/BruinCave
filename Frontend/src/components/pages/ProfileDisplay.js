@@ -5,12 +5,35 @@ import {Button} from "../Button";
 import {useLocation} from 'react-router-dom'
 import qs from 'querystring'
 import './Profile.css'
+import {get} from "../../utils/request";
+
 
 export default function ProfileDisplay() {
   const {search} = useLocation()
   const query = qs.parse(search && search.substr(1))
-  const [userInfo, setUserInfo] = useState({})
+  const [userInfo, setUserInfo] = useState({
+    edit: false,
+    ID: 1,
+    SleepStart: 0,
+    SleepEnd: 8,
+    BudgetLow: 2000,
+    BudgetHigh: 3000,
+    Gender: 'man',
+    Pet: 1,
+    Parking: 1,
+    Comment: 'easygoing'
+  })
   const [apartment, setApartment] = useState({})
+
+/*
+  useEffect(() => {
+    const id = ''//需要先知道id
+    get('/userinfo/' + id).then(res => {
+      setUserInfo(res)
+    })
+  }, []);
+  
+*/
 
   useEffect(() => {
     const fetchThings = async () => {
@@ -33,7 +56,6 @@ export default function ProfileDisplay() {
 
     fetchThings();
   }, []);
-
 
   return (
     <section id="facilities">
