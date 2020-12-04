@@ -4,11 +4,11 @@ import useForm from './useForm';
 import './Form1.css';
 
 
-const ApartmentInfo1 = ({ submitForm, profile, onChange }) => {
-  const { handleChange, values, errors } = useForm(
-    submitForm,
-    validate
-  );
+const ApartmentInfo1 = ({ handleChange, profile, onChange }) => {
+  // const { handleChange, values, errors } = useForm(
+  //   submitForm,
+  //   validate
+  // );
 
   return (
     <>
@@ -22,8 +22,7 @@ const ApartmentInfo1 = ({ submitForm, profile, onChange }) => {
             type='string'
             name='string'
             placeholder='Enter your apartment name'
-            value={values.string}
-            onChange={handleChange}
+            onChange={(e)=>handleChange({Name:e.target.value})}
           />
           <br/>
         </div>
@@ -34,8 +33,7 @@ const ApartmentInfo1 = ({ submitForm, profile, onChange }) => {
             type='int'
             name='number'
             placeholder='Enter number of bedrooms'
-            value={values.int}
-            onChange={handleChange}
+            onChange={(e)=>handleChange({Bedroom:e.target.value})}
           />
           <br/>
         </div>
@@ -46,8 +44,7 @@ const ApartmentInfo1 = ({ submitForm, profile, onChange }) => {
             type='int'
             name='number'
             placeholder='Enter number of bathrooms'
-            value={values.int}
-            onChange={handleChange}
+            onChange={(e)=>handleChange({Bathroom:e.target.value})}
           />
           <br/>
         </div>
@@ -58,14 +55,11 @@ const ApartmentInfo1 = ({ submitForm, profile, onChange }) => {
             type='int'
             name='number'
             placeholder='Enter number of parkings'
-            value={values.int}
-            onChange={handleChange}
+            onChange={(e)=>handleChange({Parking:e.target.value})}
           />
-          
-          {errors.password && <p>{errors.password}</p>}
           <br/>
         </div>
-        
+
       </>
   );
 };

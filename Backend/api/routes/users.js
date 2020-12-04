@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const users = require("../controllers/user.controller.js")
 /* GET users listing. */
-//create user 
+//create user
 router.post("/", users.create);
 
 // Retrieve all users
@@ -20,5 +20,6 @@ router.delete("/:UserID", users.delete);
 //delete all users
 router.delete("/", users.deleteAll);
 
+router.post("/login", users.login);
 
 module.exports = router;

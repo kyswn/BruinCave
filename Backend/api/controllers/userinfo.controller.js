@@ -11,8 +11,8 @@ exports.create = (req,res) => {
     const userinfo = new Userinfo({
         SleepStart: req.body.SleepStart,
         SleepEnd: req.body.SleepEnd,
-        BudgetLow: req.body.BudgetLow,
-        BudgetHigh: req.body.BudgetHigh,
+        BudgetLow: Number(req.body.BudgetLow),
+        BudgetHigh: Number(req.body.BudgetHigh),
         Gender: req.body.Gender,
         Pet: req.body.Pet,
         Parking: req.body.Parking,

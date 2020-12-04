@@ -31,7 +31,7 @@ export function Profile(props) {
     Comment: 'easygoing',
     imageURL: '',
   })
-  const id = '3'//需要先知道id here
+  const id = window.userId;//需要先知道id here
   const [preference, setPreference] = useState({
     edit: false,
     SleepStart: 0,

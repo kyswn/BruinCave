@@ -4,11 +4,11 @@ import useForm from './useForm';
 import './Form1.css';
 
 
-const ApartmentInfo2 = ({ submitForm, profile, onChange }) => {
-  const { handleChange, values, errors } = useForm(
-    submitForm,
-    validate
-  );
+const ApartmentInfo2 = ({ handleChange, profile, onChange }) => {
+  // const { handleChange, values, errors } = useForm(
+  //   submitForm,
+  //   validate
+  // );
 
   return (
     <>
@@ -22,10 +22,8 @@ const ApartmentInfo2 = ({ submitForm, profile, onChange }) => {
             type='int'
             name='int'
             placeholder='Enter the price for each room'
-            value={values.int}
-            onChange={handleChange}
+            onChange={(e)=>handleChange({Price:e.target.value})}
           />
-          <br/>
         </div>
         <div className='form-inputs'>
           <label className='form-label'>Where is your apartment located?</label>
@@ -34,8 +32,7 @@ const ApartmentInfo2 = ({ submitForm, profile, onChange }) => {
             type='string'
             name='string'
             placeholder='Enter street name and apartment name'
-            value={values.string}
-            onChange={handleChange}
+            onChange={(e)=>handleChange({Location:e.target.value})}
           />
           <br/>
         </div>
@@ -46,8 +43,7 @@ const ApartmentInfo2 = ({ submitForm, profile, onChange }) => {
             type='string'
             name='string'
             placeholder='Select relavenet amenities'
-            value={values.string}
-            onChange={handleChange}
+            onChange={(e)=>handleChange({Amenity:e.target.value})}
           />
           <br/>
         </div>
@@ -57,12 +53,11 @@ const ApartmentInfo2 = ({ submitForm, profile, onChange }) => {
             className='form-input'
             type='string'
             name='string'
-            value={values.string}
-            onChange={handleChange}
+            onChange={(e)=>handleChange({Comment:e.target.value})}
           />
           <br/>
         </div>
-        
+
       </>
   );
 };
