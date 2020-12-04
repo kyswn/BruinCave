@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {get, put} from "../../utils/request";
 import * as filestack from 'filestack-js';
+import {IconButton, Avatar} from '@material-ui/core';
 
 const imageUploadClient = filestack.init('AQrg5VT6wSQCQthwSu6Ndz');
-
 
 const EditInput = ({value, onChange, edit}) => {
   return (
@@ -27,7 +27,8 @@ export function Profile(props) {
     Gender: 'man',
     Pet: 1,
     Parking: 1,
-    Comment: 'easygoing'
+    Comment: 'easygoing',
+    imageURL: '',
   })
   const id = ''//需要先知道id
   const [preference, setPreference] = useState({
@@ -60,7 +61,6 @@ export function Profile(props) {
     put('/apt/' + id, data)
   }
   useEffect(() => {
-
     get('/userinfo/' + id).then(res => {
       setUserInfo(res)
     })
@@ -72,9 +72,22 @@ export function Profile(props) {
     })
   }, []);
 
+  const imageUploadOptions = {
+    onUploadDone: res => {
+      console.log(res.filesUploaded[0].url)
+      setUserInfo({...userInfo, imageURL: res.filesUploaded[0].url})
+      updateUserinfo()
+    }
+  }
+
   return (
     <div className="signup" style={{overflow: "auto"}}>
       <div className="form-container" style={{height: 'auto',width:600}}>
+        <IconButton style={{postion: "absolute", left: 30, top: 170, width: 100, height: 100, zIndex: 1}} onClick={()=>imageUploadClient.picker(imageUploadOptions).open()}>
+          <Avatar alt="U" 
+            style={{width: 100, height: 100}}
+            src={userInfo.imageURL}/>
+        </IconButton>
         <div className="form-content" style={{paddingBottom: 20}}>
           <div style={{textAlign: "center", fontSize: "2rem"}}>UserInfo
             <span className='edit' onClick={() => {
@@ -87,6 +100,8 @@ export function Profile(props) {
               })
             }}>{userInfo.edit ? 'save' : 'edit'}</span>
           </div>
+
+          
           <div className='display-row'>
             <div className='key'>SleepStart:</div>
             <EditInput value={userInfo.SleepStart} edit={userInfo.edit}

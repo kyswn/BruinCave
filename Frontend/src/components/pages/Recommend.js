@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "../../App.css";
 import RecommendationCard from "./RecommendationCard";
+import {Avatar} from '@material-ui/core';
+
 
 export default function Recommend() {
   const [state, setState] = useState({
@@ -43,7 +45,7 @@ export default function Recommend() {
                   ? "loading"
                   : state.matchedUsers[i].userInfo.ID
               }
-              img={`/images/user${state.matchedUsers[i].userInfo.ID}.jpg`}
+              img={state.matchedUsers[i].userInfo.imageURL}
               hasApartment={state.matchedUsers[i].apartment !== null}
             />
           ))}
