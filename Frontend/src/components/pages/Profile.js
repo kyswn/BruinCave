@@ -1,5 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {get, put} from "../../utils/request";
+import * as filestack from 'filestack-js';
+import {IconButton, Avatar} from '@material-ui/core';
+
+const imageUploadClient = filestack.init('AQrg5VT6wSQCQthwSu6Ndz');
 
 const EditInput = ({value, onChange, edit}) => {
   return (
@@ -7,6 +11,7 @@ const EditInput = ({value, onChange, edit}) => {
       className='value form-input'
       value={value}
       onChange={event => onChange(event.target.value)}
+      style={{height:25}}
     /> : <div className='value'>{value}</div>
   )
 }
@@ -23,15 +28,16 @@ export function Profile(props) {
     Gender: 'man',
     Pet: 1,
     Parking: 1,
-    Comment: 'easygoing'
+    Comment: 'easygoing',
+    imageURL: '',
   })
-  const id = ''//需要先知道id
+  const id = '3'//需要先知道id here
   const [preference, setPreference] = useState({
     edit: false,
     SleepStart: 0,
     SleepEnd: 8,
     Gender: 'man',
-    Pet: 1,
+    HasPet: 1,
   })
 
   const [apartment, setApartment] = useState({
@@ -42,7 +48,7 @@ export function Profile(props) {
     Parking: 1,
     Description: "nice apartment"
   })
-
+  
   const updateUserinfo = () => {
     const {edit, ...data} = userInfo
     put('/userinfo/' + id, data)
@@ -56,7 +62,6 @@ export function Profile(props) {
     put('/apt/' + id, data)
   }
   useEffect(() => {
-
     get('/userinfo/' + id).then(res => {
       setUserInfo(res)
     })
@@ -66,12 +71,24 @@ export function Profile(props) {
     get('/apt/' + id).then(res => {
       setApartment(res)
     })
-
   }, []);
+
+  const imageUploadOptions = {
+    onUploadDone: res => {
+      console.log(res.filesUploaded[0].url)
+      setUserInfo({...userInfo, imageURL: res.filesUploaded[0].url})
+      updateUserinfo()
+    }
+  }
 
   return (
     <div className="signup" style={{overflow: "auto"}}>
       <div className="form-container" style={{height: 'auto',width:600}}>
+        <IconButton style={{postion: "absolute", left: 30, top: 170, width: 100, height: 100, zIndex: 1}} onClick={()=>imageUploadClient.picker(imageUploadOptions).open()}>
+          <Avatar alt="U" 
+            style={{width: 100, height: 100}}
+            src={userInfo.imageURL}/>
+        </IconButton>
         <div className="form-content" style={{paddingBottom: 20}}>
           <div style={{textAlign: "center", fontSize: "2rem"}}>UserInfo
             <span className='edit' onClick={() => {
@@ -84,6 +101,8 @@ export function Profile(props) {
               })
             }}>{userInfo.edit ? 'save' : 'edit'}</span>
           </div>
+
+          
           <div className='display-row'>
             <div className='key'>SleepStart:</div>
             <EditInput value={userInfo.SleepStart} edit={userInfo.edit}
@@ -123,7 +142,7 @@ export function Profile(props) {
             <div className='key'>Comment:</div>
             <EditInput value={userInfo.Comment} edit={userInfo.edit}
                        onChange={v => setUserInfo({...userInfo, Comment: v})}/>
-          </div>  
+          </div>
       </div>
       <div className="form-content" style={{paddingBottom: 20, marginTop: 20}}>
           <div style={{textAlign: "center", fontSize: "2rem"}}>Preference
@@ -155,8 +174,8 @@ export function Profile(props) {
             </div>
             <div className='display-row'>
               <div className='key'>Pet:</div>
-              <EditInput value={preference.Pet} edit={preference.edit}
-                        onChange={v => setPreference({...preference, Pet: v})}/>
+              <EditInput value={preference.HasPet} edit={preference.edit}
+                        onChange={v => setPreference({...preference, HasPet: v})}/>
             </div>
           </div>
           <div className="form-content" style={{paddingBottom: 20, marginTop: 20}}>
@@ -200,9 +219,9 @@ export function Profile(props) {
           </div>
         </div>
 
-        
 
-        
+
+
     </div>
   );
 }

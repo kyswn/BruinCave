@@ -9,16 +9,16 @@ insert into `User` (`UserID`, `Name`, `Password`, `Email`, `Contact`, `Type`) va
 insert into `User` (`UserID`, `Name`, `Password`, `Email`, `Contact`, `Type`) values ('9', 'Guy', 'champ', 'guy@ucla.edu', '123', 'renter');
 insert into `User` (`UserID`, `Name`, `Password`, `Email`, `Contact`, `Type`) values ('10', 'Dude', 'pumpkin', 'dude@ucla.edu', '123', 'renter');
 
-insert into `UserInfo` (`ID`, `SleepStart`, `SleepEnd`, `BudgetLow`, `BudgetHigh`, `Gender`, `Pet`, `Parking`, `Comment`) values ('1', '0', '8', '600', '1500', 'male', '0', '0', 'nice');
-insert into `UserInfo` (`ID`, `SleepStart`, `SleepEnd`, `BudgetLow`, `BudgetHigh`, `Gender`, `Pet`, `Parking`, `Comment`) values ('2', '2', '10', '1000', '1500', 'male', '1', '0', 'nice');
-insert into `UserInfo` (`ID`, `SleepStart`, `SleepEnd`, `BudgetLow`, `BudgetHigh`, `Gender`, `Pet`, `Parking`, `Comment`) values ('3', '22', '6', '1500', '2000', 'female', '0', '1', 'nice');
-insert into `UserInfo` (`ID`, `SleepStart`, `SleepEnd`, `BudgetLow`, `BudgetHigh`, `Gender`, `Pet`, `Parking`, `Comment`) values ('4', '5', '12', '500', '1000', 'female', '0', '0', 'nice');
-insert into `UserInfo` (`ID`, `SleepStart`, `SleepEnd`, `BudgetLow`, `BudgetHigh`, `Gender`, `Pet`, `Parking`, `Comment`) values ('5', '0', '8', '700', '1200', 'male', '0', '1', 'nice');
-insert into `UserInfo` (`ID`, `SleepStart`, `SleepEnd`, `BudgetLow`, `BudgetHigh`, `Gender`, `Pet`, `Parking`, `Comment`) values ('6', '22', '7', '800', '2000', 'male', '1', '0', 'nice');
-insert into `UserInfo` (`ID`, `SleepStart`, `SleepEnd`, `BudgetLow`, `BudgetHigh`, `Gender`, `Pet`, `Parking`, `Comment`) values ('7', '0', '6', '1300', '1500', 'female', '0', '0', 'nice');
-insert into `UserInfo` (`ID`, `SleepStart`, `SleepEnd`, `BudgetLow`, `BudgetHigh`, `Gender`, `Pet`, `Parking`, `Comment`) values ('8', '1', '9', '1700', '2000', 'male', '0', '1', 'nice');
-insert into `UserInfo` (`ID`, `SleepStart`, `SleepEnd`, `BudgetLow`, `BudgetHigh`, `Gender`, `Pet`, `Parking`, `Comment`) values ('9', '0', '7', '300', '800', 'male', '0', '0', 'nice');
-insert into `UserInfo` (`ID`, `SleepStart`, `SleepEnd`, `BudgetLow`, `BudgetHigh`, `Gender`, `Pet`, `Parking`, `Comment`) values ('10', '2', '10', '700', '900', 'male', '1', '0', 'nice');
+insert into `UserInfo` (`ID`, `SleepStart`, `SleepEnd`, `BudgetLow`, `BudgetHigh`, `Gender`, `Pet`, `Parking`, `Comment`, `ImageURL`) values ('1', '0', '8', '600', '1500', 'male', '0', '0', 'nice', '');
+insert into `UserInfo` (`ID`, `SleepStart`, `SleepEnd`, `BudgetLow`, `BudgetHigh`, `Gender`, `Pet`, `Parking`, `Comment`, `ImageURL`) values ('2', '2', '10', '1000', '1500', 'male', '1', '0', 'nice', '');
+insert into `UserInfo` (`ID`, `SleepStart`, `SleepEnd`, `BudgetLow`, `BudgetHigh`, `Gender`, `Pet`, `Parking`, `Comment`, `ImageURL`) values ('3', '22', '6', '1500', '2000', 'female', '0', '1', 'nice', '');
+insert into `UserInfo` (`ID`, `SleepStart`, `SleepEnd`, `BudgetLow`, `BudgetHigh`, `Gender`, `Pet`, `Parking`, `Comment`, `ImageURL`) values ('4', '5', '12', '500', '1000', 'female', '0', '0', 'nice', '');
+insert into `UserInfo` (`ID`, `SleepStart`, `SleepEnd`, `BudgetLow`, `BudgetHigh`, `Gender`, `Pet`, `Parking`, `Comment`, `ImageURL`) values ('5', '0', '8', '700', '1200', 'male', '0', '1', 'nice', '');
+insert into `UserInfo` (`ID`, `SleepStart`, `SleepEnd`, `BudgetLow`, `BudgetHigh`, `Gender`, `Pet`, `Parking`, `Comment`, `ImageURL`) values ('6', '22', '7', '800', '2000', 'male', '1', '0', 'nice', '');
+insert into `UserInfo` (`ID`, `SleepStart`, `SleepEnd`, `BudgetLow`, `BudgetHigh`, `Gender`, `Pet`, `Parking`, `Comment`, `ImageURL`) values ('7', '0', '6', '1300', '1500', 'female', '0', '0', 'nice', '');
+insert into `UserInfo` (`ID`, `SleepStart`, `SleepEnd`, `BudgetLow`, `BudgetHigh`, `Gender`, `Pet`, `Parking`, `Comment`, `ImageURL`) values ('8', '1', '9', '1700', '2000', 'male', '0', '1', 'nice', '');
+insert into `UserInfo` (`ID`, `SleepStart`, `SleepEnd`, `BudgetLow`, `BudgetHigh`, `Gender`, `Pet`, `Parking`, `Comment`, `ImageURL`) values ('9', '0', '7', '300', '800', 'male', '0', '0', 'nice', '');
+insert into `UserInfo` (`ID`, `SleepStart`, `SleepEnd`, `BudgetLow`, `BudgetHigh`, `Gender`, `Pet`, `Parking`, `Comment`, `ImageURL`) values ('10', '2', '10', '700', '900', 'male', '1', '0', 'nice', '');
 
 insert into `Preference` (`ID`, `SleepStart`, `SleepEnd`, `Gender`, `HasPet`, `Description`) values ('1', '2', '10', 'male', '1', 'nice');
 insert into `Preference` (`ID`, `SleepStart`, `SleepEnd`, `Gender`, `HasPet`, `Description`) values ('2', '0', '5', 'female', '0', 'nice');
