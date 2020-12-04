@@ -25,6 +25,7 @@ const ApartmentInfo2 = ({ handleChange, profile, onChange }) => {
             onChange={(e)=>handleChange({Price:e.target.value})}
           />
         </div>
+        <br/>
         <div className='form-inputs'>
           <label className='form-label'>Where is your apartment located?</label>
           <input

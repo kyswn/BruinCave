@@ -48,7 +48,7 @@ function Login({ history }) {
                 Log In
                 </button>
               <span className='form-input-login'>
-                Do not have an account? Signup <a href='http://localhost:3000/signup'>here</a>
+                Do not have an account? Signup <a href='http://localhost:3001/signup'>here</a>
               </span>
 
             </div>

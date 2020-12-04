@@ -81,6 +81,7 @@ const FormUserDetails = ({ submitForm, profile, onChange }) => {
           {errors.int && <p>{errors.int}</p>}
           <br/>
         </div>
+        
         <div className='form-inputs'>
           <label className='form-label'>How many parking spaces do you need?</label>
           <input 
@@ -95,6 +96,7 @@ const FormUserDetails = ({ submitForm, profile, onChange }) => {
           {errors.password && <p>{errors.password}</p>}
           <br/>
         </div>
+        <br/><br/><br/><br/>
       </>
   );
 };
