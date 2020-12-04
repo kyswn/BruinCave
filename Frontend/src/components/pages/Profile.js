@@ -1,5 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {get, put} from "../../utils/request";
+import * as filestack from 'filestack-js';
+
+const imageUploadClient = filestack.init('AQrg5VT6wSQCQthwSu6Ndz');
+
 
 const EditInput = ({value, onChange, edit}) => {
   return (
@@ -42,7 +46,7 @@ export function Profile(props) {
     Parking: 1,
     Description: "nice apartment"
   })
-
+  
   const updateUserinfo = () => {
     const {edit, ...data} = userInfo
     put('/userinfo/' + id, data)
@@ -66,7 +70,6 @@ export function Profile(props) {
     get('/apt/' + id).then(res => {
       setApartment(res)
     })
-
   }, []);
 
   return (
