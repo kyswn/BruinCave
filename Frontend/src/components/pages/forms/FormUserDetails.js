@@ -49,8 +49,9 @@ const FormUserDetails = ({ submitForm, profile, onChange }) => {
   return (
     <>
         <h1>
-          Sign up
+          <b>Sign up</b>
         </h1>
+        <br/>
         <div className='form-inputs'>
           <label className='form-label'>Whats your sleeping schedule?<br/>time: {value.start}, {value.end}</label>
           <TimeRangeSlider
@@ -65,6 +66,7 @@ const FormUserDetails = ({ submitForm, profile, onChange }) => {
                 step={15}
                 value={value}/>
           {errors.username && <p>{errors.username}</p>}
+          <br/>
         </div>
         <div className='form-inputs'>
           <label className='form-label'>How many pets do you have?</label>
@@ -74,9 +76,10 @@ const FormUserDetails = ({ submitForm, profile, onChange }) => {
             name='number'
             placeholder='Enter pets number'
             value={values.int}
-            onChange={handleChange}
+            onChange={(e)=>onChange('Pet',e.target.value)}
           />
           {errors.int && <p>{errors.int}</p>}
+          <br/>
         </div>
         <div className='form-inputs'>
           <label className='form-label'>How many parking spaces do you need?</label>
@@ -90,18 +93,7 @@ const FormUserDetails = ({ submitForm, profile, onChange }) => {
           />
 
           {errors.password && <p>{errors.password}</p>}
-        </div>
-        <div className='form-inputs'>
-          <label className='form-label'>Do you intend to host activities? How often?</label>
-          <input
-            className='form-input'
-            type='password'
-            name='password2'
-            placeholder='Confirm your party'
-            value={values.password2}
-            onChange={handleChange}
-          />
-          {errors.password2 && <p>{errors.password2}</p>}
+          <br/>
         </div>
       </>
   );

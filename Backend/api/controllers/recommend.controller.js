@@ -3,7 +3,10 @@ const User = require("../models/user.model.js");
 const Userinfo = require("../models/userinfo.model.js");
 const Ownership = require("../models/ownership.model.js");
 const Preference = require("../models/preference.model.js");
+const MonkeyLearn = require('monkeylearn')
 
+const ml = new MonkeyLearn('7ccb6b43f1e827425595d9dcfd7e3cefc1806d21')
+const model_id = 'ex_YCya9nrn'
 
 exports.recommend = (req, res) => {
   const userId = req.params.UserID
@@ -90,14 +93,21 @@ const recommendWithoutApt = (userId, result) => {
                 }  
                 // ownership not found, target does not own an apartment
                 // both user and target dont own apartment -- only check if they match with each other 
-                if (checkUserMatch(preferenceData, targetInfoData)) {
-                  recUsers.push({
-                    user: target,
-                    userInfo: targetInfoData,
-                    apartment: null,
-                  })
-                }
-                resolve();
+                const checkUserPromise = new Promise(resolve1 => {
+                  checkUserMatch(preferenceData, myInfoData, targetInfoData, resolve1)
+                })
+                
+                checkUserPromise.then(matchScore => {
+                  if (matchScore !== -1) {
+                    recUsers.push({
+                      user: target,
+                      userInfo: targetInfoData,
+                      apartment: null,
+                      score: matchScore
+                    })
+                  }
+                  resolve();
+                })   
               } else {
                 // target owns an apartment
                 Apt.findOne(ownershipData[0].AptID, (aptErr, aptData) => {
@@ -106,20 +116,30 @@ const recommendWithoutApt = (userId, result) => {
                     return;
                   }
                   // check if user and target match, and if user and apartment match
-                  if (checkUserMatch(preferenceData, targetInfoData) && checkAptMatch(aptData, myInfoData)) {
-                    recUsers.push({
-                      user: target,
-                      userInfo: targetInfoData,
-                      apartment: aptData,
-                    })
-                  }
-                  resolve();
+                  const checkUserPromise = new Promise(resolve1 => {
+                    checkUserMatch(preferenceData, myInfoData, targetInfoData, resolve1)
+                  })
+                  
+                  checkUserPromise.then(matchScore => {
+                    if (matchScore !== -1 && checkAptMatch(aptData, myInfoData)) {
+                      recUsers.push({
+                        user: target,
+                        userInfo: targetInfoData,
+                        apartment: aptData,
+                        score: matchScore
+                      })
+                    }
+                    resolve();
+                  })   
                 });
               } 
             });
           });
         }));
-        Promise.all(promises).then(() => {result(null, recUsers)}, err => {result(err, null)});
+        Promise.all(promises).then(() => {
+          recUsers.sort((u1, u2) => u2.score - u1.score)
+          result(null, recUsers)},
+          err => {result(err, null)});
       }); 
     });
   });
@@ -132,6 +152,11 @@ const recommendWithApt = (userId, apt, result) => {
       result(preferenceErr, null);
       return;
     }
+    Userinfo.findById(userId, (myInfoErr, myInfoData) => {
+      if (myInfoErr) {
+        result(myInfoErr, null);
+        return;
+      }
       User.getAll((allUsersErr, allUsersData) => {
         if (allUsersErr) {
           result(allUsersErr, null);
@@ -147,43 +172,74 @@ const recommendWithApt = (userId, apt, result) => {
             return;
           } 
 
-        Userinfo.findById(targetId, (targetInfoErr, targetInfoData) => {
-          if (targetInfoErr) {
-            reject(targetInfoErr);
-            return;
-          }
-          Ownership.findByUserId(targetId, (ownershipErr, ownershipData) => {
-            if (ownershipErr) {
-              if (ownershipErr.kind !== "not_found") {
-                reject(ownershipErr);
-                return;
-              }  
-              // ownership not found, target does not own an apartment
-              // check if user and target match, and if user and apartment match
-              if (checkUserMatch(preferenceData, targetInfoData) && checkAptMatch(apt, targetInfoData)) {
-                recUsers.push({
-                  user: target,
-                  userInfo: targetInfoData,
-                  apartment: null,
+          Userinfo.findById(targetId, (targetInfoErr, targetInfoData) => {
+            if (targetInfoErr) {
+              reject(targetInfoErr);
+              return;
+            }
+            Ownership.findByUserId(targetId, (ownershipErr, ownershipData) => {
+              if (ownershipErr) {
+                if (ownershipErr.kind !== "not_found") {
+                  reject(ownershipErr);
+                  return;
+                }  
+                // ownership not found, target does not own an apartment
+                // check if user and target match, and if user and apartment match
+                const checkUserPromise = new Promise(resolve1 => {
+                  checkUserMatch(preferenceData, myInfoData, targetInfoData, resolve1)
                 })
+                
+                checkUserPromise.then(matchScore => {
+                  if (matchScore !== -1 && checkAptMatch(apt, targetInfoData)) {
+                    recUsers.push({
+                      user: target,
+                      userInfo: targetInfoData,
+                      apartment: null,
+                      score: matchScore
+                    })
+                  }
+                  resolve();
+                })
+              } else {
+                resolve();
               }
-            } 
-            resolve();
+            });
           });
-        });
-      }));
-      Promise.all(promises).then(() => {result(null, recUsers)}, err => {result(err, null)});
-    }); 
+        }));
+
+        Promise.all(promises).then(() => {
+          recUsers.sort((u1, u2) => u2.score - u1.score)
+          result(null, recUsers)}, 
+          err => {result(err, null)});
+      }); 
+    });
 
   });
 }
 
 
-const checkUserMatch = (preference, targetInfo) => {
-  return preference.Gender === targetInfo.Gender &&
-        (preference.hasPet || !targetInfo.Pet) && 
-        timeDiff(preference.SleepStart, targetInfo.SleepStart) <= 2 &&
-        timeDiff(preference.SleepEnd, targetInfo.SleepEnd) <= 2;
+const checkUserMatch = (preference, myInfo, targetInfo, resolve) => {
+  if (preference.Gender !== targetInfo.Gender ||
+      (!preference.hasPet && targetInfo.Pet) ||
+      timeDiff(preference.SleepStart, targetInfo.SleepStart) > 2 ||
+      timeDiff(preference.SleepEnd, targetInfo.SleepEnd) > 2) {
+    resolve(-1);
+    return;
+  }
+
+  // const data = [myInfo.Comment, targetInfo.Comment]
+  // ml.extractors.extract(model_id, data).then(res => {
+  //   keywords1 = res.body[0].extractions.map(keyword => keyword.parsed_value)
+  //   keywords2 = res.body[1].extractions.map(keyword => keyword.parsed_value)
+  //   keywords1.forEach(word => {
+  //     if (keywords2.includes(word)) {
+  //       resolve(2);
+  //       return;
+  //     }
+  //   })
+  //   resolve(1);
+  // })
+  resolve(1)
 }
 
 const timeDiff = (time1, time2) => {

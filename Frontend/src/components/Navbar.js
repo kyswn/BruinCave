@@ -138,8 +138,8 @@ function Navbar() {
               </Link>
             </li>
           </ul>
-          {button && returnLogin()}
-          {button && returnSignup()}
+          {!window.userId && button && returnLogin()}
+          {!window.userId && button && returnSignup()}
 
         </div>
         <Button buttonStyle="btn--outline" buttonLink='/profile'>Profile</Button>

@@ -1,12 +1,6 @@
 const sql = require("./db.js");
 
 // constructor
-/**
- * Construct a user.
- * @constructor
- * @param {JSON} user - The user json file
- * 
- */
 const User = function(user) {
   this.Name = user.Name;
   this.Password = user.Password;
@@ -14,13 +8,6 @@ const User = function(user) {
   this.Email =  user.Email;
   this.Type = user.Type;
 };
-
-/**
- * Create a user.
- * 
- * @param {User} newUser - a User object you want to create
- * @param {function} result - The handler function of the result
- */
 
 User.create = (newUser, result) => {
   sql.query("INSERT INTO User SET ?", newUser, (err, res) => {
@@ -34,12 +21,7 @@ User.create = (newUser, result) => {
     result(null, { id: res.insertId, ...newUser });
   });
 };
-/**
- *  Find a user by its id
- * 
- * @param {int} UserId - The userid of the user you want to find
- * @param {function} result - The handler function of the result
- */
+
 User.findById = (UserId, result) => {
   sql.query(`SELECT * FROM User WHERE UserID = ${UserId}`, (err, res) => {
     if (err) {
@@ -58,12 +40,26 @@ User.findById = (UserId, result) => {
     result({ kind: "not_found" }, null);
   });
 };
-/**
- * Get all the users
- * 
- * 
- * @param {function} result - The handler function of the result
- */
+
+User.findOne = (Email, Password, result) => {
+  sql.query(`SELECT * FROM User WHERE Email = '${Email}' And Password = '${Password}'`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    if (res.length) {
+      console.log("found User: ", res[0]);
+      result(null, res[0]);
+      return;
+    }
+
+    // not found User with the id
+    result({ kind: "not_found" }, null);
+  });
+};
+
 User.getAll = result => {
   sql.query("SELECT * FROM User", (err, res) => {
     if (err) {
@@ -76,12 +72,7 @@ User.getAll = result => {
     result(null, res);
   });
 };
-/**
- * Update a user.
- * @param {int} id -The userid of the user you want to update
- * @param {User} user - The User object you want to update the user with 
- * @param {function} result - The handler function of the result
- */
+
 User.updateById = (id, user, result) => {
   sql.query(
     "UPDATE User SET Email = ?, Name = ?, Password = ?,Contact = ?, Type = ? WHERE UserID = ?",
@@ -104,12 +95,7 @@ User.updateById = (id, user, result) => {
     }
   );
 };
-/**
- * Remove a user.
- * 
- * @param {int} id - The userid of the user you want to remove
- * @param {function} result - The handler function of the result
- */
+
 User.remove = (id, result) => {
   sql.query("DELETE FROM User WHERE UserID = ?", id, (err, res) => {
     if (err) {
@@ -128,12 +114,7 @@ User.remove = (id, result) => {
     result(null, res);
   });
 };
-/**
- * Remove all users.
- * 
- * 
- * @param {function} result - The handler function of the result
- */
+
 User.removeAll = result => {
   sql.query("DELETE FROM User", (err, res) => {
     if (err) {

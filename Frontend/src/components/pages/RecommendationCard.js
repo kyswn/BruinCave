@@ -9,7 +9,7 @@ const RecommendationCard = (props) => {
   return (
     <>
       <div class="card-padding">
-        <div class="card card-shadow" style={{ width: "18rem" }}>
+        <div class="card card-shadow" style={{ width: "18rem", backgroundColor: props.score === 1 ? "#fff" : "#ffb300"}}>
           <br />
           <Avatar alt="User" 
             style={{width: 100, height: 100, marginLeft: "auto", marginRight: "auto"}}
@@ -22,7 +22,7 @@ const RecommendationCard = (props) => {
               Gender: {props.gender}
             </p>
             <p class="card-text" style={{ fontFamily: "Roboto" }}>
-              Description: {props.description}
+              Email: {props.email}
             </p>
             <a href={'/recommendProfile?id=' + props.id+ '&name=' + props.name} class="card-link" style={{ fontFamily: "Roboto" }}>
               View Profile

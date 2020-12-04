@@ -32,13 +32,7 @@ function HeroSection() {
         >
           find an APARTMENT
         </Button>
-        <Button
-          className="btns"
-          buttonStyle="btn--outline1"
-          buttonSize="btn--large"
-        >
-          I'm a REALTOR
-        </Button>
+        
       </div>
     </div>
   );

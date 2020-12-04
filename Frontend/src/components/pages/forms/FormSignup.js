@@ -3,11 +3,11 @@ import validate from './validateInfo';
 import useForm from './useForm';
 import './Form1.css';
 
-const FormSignup = ({ submitForm }) => {
-  const { handleChange, values, errors } = useForm(
-    submitForm,
-    validate
-  );
+const FormSignup = ({ handleChange }) => {
+  // const { handleChange, values, errors } = useForm(
+  //   submitForm,
+  //   validate
+  // );
 
   return (
     <>
@@ -21,10 +21,9 @@ const FormSignup = ({ submitForm }) => {
             type='text'
             name='username'
             placeholder='Enter your username'
-            value={values.username}
-            onChange={handleChange}
+            onChange={e=>handleChange({Name:e.target.value})}
           />
-          {errors.username && <p>{errors.username}</p>}
+          <br/>
         </div>
         <div className='form-inputs'>
           <label className='form-label'>UCLA Email</label>
@@ -33,10 +32,9 @@ const FormSignup = ({ submitForm }) => {
             type='email'
             name='email'
             placeholder='Enter your UCLA email'
-            value={values.email}
-            onChange={handleChange}
+            onChange={e=>handleChange({Email:e.target.value})}
           />
-          {errors.email && <p>{errors.email}</p>}
+          <br/>
         </div>
         <div className='form-inputs'>
           <label className='form-label'>Password</label>
@@ -45,10 +43,9 @@ const FormSignup = ({ submitForm }) => {
             type='password'
             name='password'
             placeholder='Enter your password'
-            value={values.password}
-            onChange={handleChange}
+            onChange={e=>handleChange({Password:e.target.value})}
           />
-          {errors.password && <p>{errors.password}</p>}
+          <br/>
         </div>
         <div className='form-inputs'>
           <label className='form-label'>Confirm Password</label>
@@ -57,16 +54,15 @@ const FormSignup = ({ submitForm }) => {
             type='password'
             name='password2'
             placeholder='Confirm your password'
-            value={values.password2}
-            onChange={handleChange}
+            onChange={e=>handleChange({Password2:e.target.value})}
           />
-          {errors.password2 && <p>{errors.password2}</p>}
+          <br/>
         </div>
-        
-        
-        
-        
-       
+
+
+
+
+
       </>
   );
 };

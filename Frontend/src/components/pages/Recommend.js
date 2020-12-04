@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../../App.css";
 import RecommendationCard from "./RecommendationCard";
-import {Avatar} from '@material-ui/core';
-
 
 export default function Recommend() {
   const [state, setState] = useState({
@@ -12,7 +10,7 @@ export default function Recommend() {
 
   useEffect(() => {
     const fetchThings = async () => {
-      const _userinfo = await fetch("http://localhost:3000/recommend/5");
+      const _userinfo = await fetch("http://localhost:3001/recommend/5");
       const userinfojson = await _userinfo.json();
       setState({
         matchedUsers: userinfojson,
@@ -45,8 +43,10 @@ export default function Recommend() {
                   ? "loading"
                   : state.matchedUsers[i].userInfo.ID
               }
-              img={state.matchedUsers[i].userInfo.imageURL}
+              img={state.matchedUsers[i].userInfo.ImageURL}
               hasApartment={state.matchedUsers[i].apartment !== null}
+              score={state.matchedUsers[i].score}
+              email={state.matchedUsers[i].user.Email}
             />
           ))}
         </div>

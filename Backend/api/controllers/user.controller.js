@@ -1,5 +1,15 @@
 const User = require("../models/user.model.js");
 
+exports.login = (req, res) => {
+  User.findOne(req.body.Email, req.body.Password, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving users."
+      });
+    else res.send(data);
+  });
+}
 // Create and Save a new User
 exports.create = (req, res) => {
   // Validate request
@@ -31,32 +41,32 @@ exports.create = (req, res) => {
 
 // Retrieve all user from the database.
 exports.findAll = (req, res) => {
-    User.getAll((err, data) => {
-        if (err)
-          res.status(500).send({
-            message:
-              err.message || "Some error occurred while retrieving users."
-          });
-        else res.send(data);
-      }); 
+  User.getAll((err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving users."
+      });
+    else res.send(data);
+  });
 };
 
 // Find a single user with a UserrId
 exports.findOne = (req, res) => {
-    console.log("GET request at users/userID received");
-    User.findById(req.params.UserID, (err, data) => {
-        if (err) {
-          if (err.kind === "not_found") {
-            res.status(404).send({
-              message: `Not found user with id ${req.params.UserID}.`
-            });
-          } else {
-            res.status(500).send({
-              message: "Error retrieving user with id " + req.params.UserID
-            });
-          }
-        } else res.send(data);
-      });
+  console.log("GET request at users/userID received");
+  User.findById(req.params.UserID, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found user with id ${req.params.UserID}.`
+        });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving user with id " + req.params.UserID
+        });
+      }
+    } else res.send(data);
+  });
 };
 
 // Update a user identified by the userid in the request
@@ -68,7 +78,7 @@ exports.update = (req, res) => {
     });
   }
 
-  User.updateById(req.params.UserID,new User(req.body), (err, data) => {
+  User.updateById(req.params.UserID, new User(req.body), (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
           res.status(404).send({
@@ -86,29 +96,29 @@ exports.update = (req, res) => {
 
 // Delete a user with the specified userid in the request
 exports.delete = (req, res) => {
-    User.remove(req.params.UserID, (err, data) => {
-        if (err) {
-          if (err.kind === "not_found") {
-            res.status(404).send({
-              message: `Not found user with id ${req.params.UserID}.`
-            });
-          } else {
-            res.status(500).send({
-              message: "Could not delete User with id " + req.params.UserID
-            });
-          }
-        } else res.send({ message: `USER was deleted successfully!` });
-      }); 
+  User.remove(req.params.UserID, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found user with id ${req.params.UserID}.`
+        });
+      } else {
+        res.status(500).send({
+          message: "Could not delete User with id " + req.params.UserID
+        });
+      }
+    } else res.send({message: `USER was deleted successfully!`});
+  });
 };
 
 // Delete all users from the database.
 exports.deleteAll = (req, res) => {
-    User.removeAll((err, data) => {
-        if (err)
-          res.status(500).send({
-            message:
-              err.message || "Some error occurred while removing all USERS."
-          });
-        else res.send({ message: `All USERES were deleted successfully!` });
+  User.removeAll((err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while removing all USERS."
       });
+    else res.send({message: `All USERES were deleted successfully!`});
+  });
 };
