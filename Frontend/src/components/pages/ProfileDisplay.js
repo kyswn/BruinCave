@@ -68,7 +68,8 @@ export default function ProfileDisplay() {
           >
             Back
           </Button>
-          <div style={{textAlign: "center", fontSize: "2rem"}}>User Info</div>
+          <div style={{textAlign: "center", fontSize: "2rem"}}>{query.name}</div>
+
           <div className='display-row' style={{marginTop: 30}}>
             <label className='key'>SleepStart:</label>
             <label className='value'>{userInfo.SleepStart}</label>
