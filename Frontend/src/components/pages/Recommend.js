@@ -10,7 +10,7 @@ export default function Recommend() {
 
   useEffect(() => {
     const fetchThings = async () => {
-      const _userinfo = await fetch("http://localhost:3000/recommend/5");
+      const _userinfo = await fetch("http://localhost:3001/recommend/5");
       const userinfojson = await _userinfo.json();
       setState({
         matchedUsers: userinfojson,
