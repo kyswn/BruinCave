@@ -42,12 +42,16 @@ export function Profile(props) {
 
   const [apartment, setApartment] = useState({
     edit: false,
+    Name: "",
     ApartmentID: "",
+    Price: "",
     Location: "",
     Bedroom: "",
     Bathroom: "",
     Parking: "",
-    Description: ""
+    Description: "",
+    Amenity: "",
+    Comment: "",
   })
   
   const updateUserinfo = () => {
@@ -64,10 +68,10 @@ export function Profile(props) {
       put('/apt/' + id, data)
     } else {
       post('/apt', apartment).then(res => {
-
+        console.log(res)
+        post('/ownership', {UsrID: id, AptID: res.id})
       })
     }
-    
   }
   useEffect(() => {
     get('/userinfo/' + id).then(res => {
@@ -205,6 +209,11 @@ export function Profile(props) {
               <div className='key'>Location:</div>
               <EditInput value={apartment.Location} edit={apartment.edit}
                         onChange={v => setApartment({...apartment, Location: v})}/>
+            </div>
+            <div className='display-row'>
+              <div className='key'>Price:</div>
+              <EditInput value={apartment.Price} edit={apartment.edit}
+                        onChange={v => setApartment({...apartment, Price: v})}/>
             </div>
             <div className='display-row'>
               <div className='key'>Bedroom:</div>
