@@ -7,15 +7,25 @@ export default function Recommend() {
     matchedUsers: [],
     loading: true,
   });
+  //const [login, setLogin] = useState(false)
 
   useEffect(() => {
     const fetchThings = async () => {
-      const _userinfo = await fetch(`http://localhost:3000/recommend/${window.userId}`);
-      const userinfojson = await _userinfo.json();
-      setState({
-        matchedUsers: userinfojson,
-        loading: false,
-      });
+      if (window.userId !== undefined) {
+        const _userinfo = await fetch(
+          `http://localhost:3000/recommend/${window.userId}`
+        );
+        const userinfojson = await _userinfo.json();
+        setState({
+          matchedUsers: userinfojson,
+          loading: false,
+        });
+        //setLogin(true)
+      } else {
+        if (window.confirm("Please login to access your recommendation.")) {
+          window.location.href = "http://localhost:3001/login";
+        }
+      }
     };
 
     fetchThings();
@@ -38,11 +48,7 @@ export default function Recommend() {
                   ? "loading"
                   : state.matchedUsers[i].userInfo.Comment
               }
-              id={
-                state.loading
-                  ? "loading"
-                  : state.matchedUsers[i].userInfo.ID
-              }
+              id={state.loading ? "loading" : state.matchedUsers[i].userInfo.ID}
               img={state.matchedUsers[i].userInfo.ImageURL}
               hasApartment={state.matchedUsers[i].apartment !== null}
               score={state.matchedUsers[i].score}

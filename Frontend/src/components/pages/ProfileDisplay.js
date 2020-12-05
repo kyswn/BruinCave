@@ -26,15 +26,6 @@ export default function ProfileDisplay() {
   })
   const [apartment, setApartment] = useState({})
 
-/*
-  useEffect(() => {
-    const id = ''//需要先知道id
-    get('/userinfo/' + id).then(res => {
-      setUserInfo(res)
-    })
-  }, []);
-  
-*/
 
   useEffect(() => {
     const fetchThings = async () => {
