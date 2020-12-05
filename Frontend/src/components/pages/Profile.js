@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {get, put, post} from "../../utils/request";
 import * as filestack from 'filestack-js';
 import {IconButton, Avatar} from '@material-ui/core';
-
+import store from '../../Store/index';
 const imageUploadClient = filestack.init('AQrg5VT6wSQCQthwSu6Ndz');
 
 const EditInput = ({value, onChange, edit}) => {
@@ -31,7 +31,7 @@ export function Profile(props) {
     Comment: "",
     ImageURL: "",
   })
-  const id = window.userId;
+  const id = store.getState().id;
   const [preference, setPreference] = useState({
     edit: false,
     SleepStart: "",

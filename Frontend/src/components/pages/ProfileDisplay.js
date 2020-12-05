@@ -2,13 +2,23 @@ import React, {useEffect, useState} from "react";
 //import Button from 'react-bootstrap/Button';
 import './forms/Form1.css';
 import {Button} from "../Button";
-import {useLocation} from 'react-router-dom'
+import {Redirect, useLocation} from 'react-router-dom'
 import qs from 'querystring'
 import './Profile.css'
 import {get} from "../../utils/request";
+import store from '../../Store/index';
+import { Backdrop } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
+
+
+  
+
+
+
 
 
 export default function ProfileDisplay() {
+  let history = useHistory();
   const {search} = useLocation()
   const query = qs.parse(search && search.substr(1))
   const [userInfo, setUserInfo] = useState({
@@ -35,6 +45,10 @@ export default function ProfileDisplay() {
   }, []);
   
 */
+  function handleClick() {
+    console.log(store.getState().id);
+    history.push('/recommend');
+  }
 
   useEffect(() => {
     const fetchThings = async () => {
@@ -56,18 +70,21 @@ export default function ProfileDisplay() {
     };
 
     fetchThings();
+    console.log(store.getState().id);
   }, []);
 
   return (
     <section id="facilities">
       <div className="form-container" style={{height: 'auto', width: 600}}>
         <div className="form-content" style={{paddingBottom: 40}}>
-          <Button
-            buttonStyle="btn--outline"
-            buttonLink="/recommend"
+          <a
+             onClick= { handleClick}
+                
+            
+            
           >
             Back
-          </Button>
+          </a>
           <div style={{textAlign: "center", fontSize: "2rem"}}>{query.name}</div>
 
           <div className='display-row' style={{marginTop: 30}}>
