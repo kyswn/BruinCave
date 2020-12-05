@@ -4,9 +4,14 @@ import "../../App.css";
 import "./RecommendationCard.css";
 import HomeIcon from '@material-ui/icons/Home';
 import {Avatar} from '@material-ui/core';
-import { Link } from 'react-router-dom'
-
+import { useHistory } from "react-router-dom";
 const RecommendationCard = (props) => {
+  let history = useHistory();
+
+  function handleClick() {
+    let string ="/recommendProfile?id=" + props.id+ "&name=" + props.name;
+    history.push(string);
+  };
   return (
     <>
       <div class="card-padding">
@@ -25,9 +30,9 @@ const RecommendationCard = (props) => {
             <p class="card-text" style={{ fontFamily: "Roboto" }}>
               Email: {props.email}
             </p>
-            <Link to={`/recommendProfile?id=${props.id}&name=${props.name}`}>
+            <a onClick = {handleClick} class="card-link" style={{ fontFamily: "Roboto" }}>
               View Profile
-            </Link>
+            </a>
             {props.hasApartment? <HomeIcon style={{marginLeft: 120}}></HomeIcon> : null}
           </div>
         </div>

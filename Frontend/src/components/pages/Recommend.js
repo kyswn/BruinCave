@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../../App.css";
 import RecommendationCard from "./RecommendationCard";
-
+import store from '../../Store/index';
 export default function Recommend() {
   const [state, setState] = useState({
     matchedUsers: [],
@@ -11,21 +11,24 @@ export default function Recommend() {
 
   useEffect(() => {
     const fetchThings = async () => {
-      if (window.userId !== undefined) {
-        const _userinfo = await fetch(
-          `http://localhost:3000/recommend/${window.userId}`
-        );
+
+     
+      let id = store.getState().id;
+      if(id!=0){
+        console.log(id);
+        const _userinfo = await fetch(`http://localhost:3000/recommend/${id}`);
         const userinfojson = await _userinfo.json();
         setState({
           matchedUsers: userinfojson,
           loading: false,
         });
-        //setLogin(true)
-      } else {
+      }
+      else  {
         if (window.confirm("Please login to access your recommendation.")) {
           window.location.href = "http://localhost:3001/login";
         }
       }
+
     };
 
     fetchThings();
