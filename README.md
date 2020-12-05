@@ -75,6 +75,15 @@ Detailed description of our RESTful API
       - backend_test.md   
       Description of test details
       - recommend.test.js
+- Frontend/
+    - tests/
+      - About.test.js
+      - Home.test.js
+      - Login.test.js
+      - Profile.test.js
+      - apt.test.js
+      - Recommend.md   
+      - RecommendationCard.test.js
 
 ## How to Run the Tests
 - For tests excluding recommend:  
