@@ -52,3 +52,9 @@ Detailed description of our RESTful API
       - ownership.test.js
       - apt.test.js
       - backend_test.md
+
+
+## Reference
+- React official documents and tutorials
+- CS 144 course material
+- Stack overflow

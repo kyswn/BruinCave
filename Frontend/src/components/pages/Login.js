@@ -2,6 +2,17 @@ import React, { useState } from "react";
 import './forms/Form1.css';
 import { post } from '../../utils/request'
 import { withRouter } from 'react-router-dom';
+import store from '../../Store/index';
+
+
+  //function to change id state in redux
+function changeID(para){
+    const action = {
+        type: 'changeid',
+        value: para,
+    }
+    store.dispatch(action);
+}
 
 function Login({ history }) {
   const [email, setEmail] = useState()
@@ -41,7 +52,10 @@ function Login({ history }) {
               <button className='form-input-btn' onClick={e => {
                 e.stopPropagation()
                 post('/users/login', { Email: email, Password: password }).then(res => {
+                  console.log(res.UserID);
                   window.userId = res.UserID;
+                  changeID(res.UserID);
+                  console.log(window.userId);
                   history.replace('/');
                 })
               }}>

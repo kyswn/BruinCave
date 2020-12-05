@@ -6,7 +6,15 @@ import HomeIcon from '@material-ui/icons/Home';
 import {Avatar} from '@material-ui/core';
 import { Link } from 'react-router-dom'
 
+//import { useHistory } from "react-router-dom";
+
 const RecommendationCard = (props) => {
+//   let history = useHistory();
+
+//   function handleClick() {
+//     let string ="/recommendProfile?id=" + props.id+ "&name=" + props.name;
+//     history.push(string);
+//   };
   return (
     <>
       <div class="card-padding">
