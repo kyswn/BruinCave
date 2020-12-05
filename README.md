@@ -72,6 +72,14 @@ Detailed description of our RESTful API
       - preference.test.js
       - ownership.test.js
       - apt.test.js
-      - backend_test.md
+      - backend_test.md   
+      Description of test details
+      - recommend.test.js
 
 ## How to Run the Tests
+
+
+## Reference
+- React official documents and tutorials
+- CS 144 course material
+- Stack overflow
