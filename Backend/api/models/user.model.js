@@ -1,11 +1,11 @@
 const sql = require("./db.js");
 
 // constructor
-const User = function(user) {
+const User = function (user) {
   this.Name = user.Name;
   this.Password = user.Password;
   this.Contact = user.Contact;
-  this.Email =  user.Email;
+  this.Email = user.Email;
   this.Type = user.Type;
 };
 
@@ -42,25 +42,28 @@ User.findById = (UserId, result) => {
 };
 
 User.findOne = (Email, Password, result) => {
-  sql.query(`SELECT * FROM User WHERE Email = '${Email}' And Password = '${Password}'`, (err, res) => {
-    if (err) {
-      console.log("error: ", err);
-      result(err, null);
-      return;
-    }
+  sql.query(
+    `SELECT * FROM User WHERE Email = '${Email}' And Password = '${Password}'`,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
 
-    if (res.length) {
-      console.log("found User: ", res[0]);
-      result(null, res[0]);
-      return;
-    }
+      if (res.length) {
+        console.log("found User: ", res[0]);
+        result(null, res[0]);
+        return;
+      }
 
-    // not found User with the id
-    result({ kind: "not_found" }, null);
-  });
+      // not found User with the id
+      result({ kind: "not_found" }, null);
+    }
+  );
 };
 
-User.getAll = result => {
+User.getAll = (result) => {
   sql.query("SELECT * FROM User", (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -76,7 +79,7 @@ User.getAll = result => {
 User.updateById = (id, user, result) => {
   sql.query(
     "UPDATE User SET Email = ?, Name = ?, Password = ?,Contact = ?, Type = ? WHERE UserID = ?",
-    [user.Email, user.Name, user.Password,user.Contact,user.Type, id ],
+    [user.Email, user.Name, user.Password, user.Contact, user.Type, id],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -115,7 +118,7 @@ User.remove = (id, result) => {
   });
 };
 
-User.removeAll = result => {
+User.removeAll = (result) => {
   sql.query("DELETE FROM User", (err, res) => {
     if (err) {
       console.log("error: ", err);

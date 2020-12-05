@@ -10,7 +10,7 @@ function Navbar() {
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
   const { pathname } = useLocation();
-  const [login, setLogin] = useState(false)
+  const [login, setLogin] = useState(false);
 
   const showButton = () => {
     if (window.innerWidth <= 960) {
@@ -19,7 +19,6 @@ function Navbar() {
       setButton(true);
     }
   };
-  
 
   function classHome() {
     if (!button) {
@@ -73,7 +72,7 @@ function Navbar() {
   }, []);
 
   window.addEventListener("resize", showButton);
-  
+
   return (
     <>
       <nav className="navbar">
@@ -143,9 +142,12 @@ function Navbar() {
           </ul>
           {!window.userId && button && returnLogin()}
           {!window.userId && button && returnSignup()}
-
         </div>
-        {window.userId && <Button buttonStyle="btn--outline" buttonLink='/profile'>Profile</Button>}
+        {window.userId && (
+          <Button buttonStyle="btn--outline" buttonLink="/profile">
+            Profile
+          </Button>
+        )}
       </nav>
     </>
   );

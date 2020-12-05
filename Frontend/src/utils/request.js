@@ -1,6 +1,6 @@
-import axios from 'axios';
-import qs from 'qs';
-axios.defaults.baseURL = 'http://localhost:3000/';
+import axios from "axios";
+import qs from "qs";
+axios.defaults.baseURL = "http://localhost:3000/";
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 // axios.defaults.headers.post['Content-Type'] = 'multipart/form-data';
 
@@ -26,16 +26,17 @@ axios.defaults.baseURL = 'http://localhost:3000/';
  */
 export function get(url, params = {}) {
   return new Promise((resolve, reject) => {
-    axios.get(url, {
-      params: params
-    })
-      .then(response => {
+    axios
+      .get(url, {
+        params: params,
+      })
+      .then((response) => {
         resolve(response.data);
       })
-      .catch(err => {
-        reject(err)
-      })
-  })
+      .catch((err) => {
+        reject(err);
+      });
+  });
 }
 
 /**
@@ -47,22 +48,26 @@ export function get(url, params = {}) {
 
 export function post(url, data = {}) {
   return new Promise((resolve, reject) => {
-    axios.post(url, data)
-      .then(response => {
+    axios.post(url, data).then(
+      (response) => {
         resolve(response.data);
-      }, err => {
-        reject(err)
-      })
-  })
+      },
+      (err) => {
+        reject(err);
+      }
+    );
+  });
 }
 
 export function put(url, data = {}) {
   return new Promise((resolve, reject) => {
-    axios.put(url, data)
-      .then(response => {
+    axios.put(url, data).then(
+      (response) => {
         resolve(response.data);
-      }, err => {
-        reject(err)
-      })
-  })
+      },
+      (err) => {
+        reject(err);
+      }
+    );
+  });
 }

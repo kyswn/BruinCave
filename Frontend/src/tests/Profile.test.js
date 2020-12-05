@@ -1,9 +1,9 @@
 import React from "react";
-import { shallow, configure,mount } from "enzyme";
+import { shallow, configure, mount } from "enzyme";
 import Profile from "../components/pages/Profile";
-import Adapter from 'enzyme-adapter-react-16';
+import Adapter from "enzyme-adapter-react-16";
 
-configure({ adapter: new Adapter() })
+configure({ adapter: new Adapter() });
 
 it("renders without crashing", () => {
   shallow(<Profile />);
@@ -11,42 +11,42 @@ it("renders without crashing", () => {
 
 it("renders Account header", () => {
   const wrapper = shallow(<Profile />);
-  const welcome = <div className='key'>SleepStart:</div>;
+  const welcome = <div className="key">SleepStart:</div>;
   expect(wrapper.contains(welcome)).toEqual(true);
 });
 
 it("renders Account header", () => {
   const wrapper = shallow(<Profile />);
-  const welcome = <div className='key'>SleepEnd:</div>;
+  const welcome = <div className="key">SleepEnd:</div>;
   expect(wrapper.contains(welcome)).toEqual(true);
 });
 
 it("renders Account header", () => {
   const wrapper = shallow(<Profile />);
-  const welcome = <div className='key'>BudgetLow:</div>
+  const welcome = <div className="key">BudgetLow:</div>;
   expect(wrapper.contains(welcome)).toEqual(true);
 });
 
 it("renders Account header", () => {
   const wrapper = shallow(<Profile />);
-  const welcome = <div className='key'>BudgetHigh:</div>;
+  const welcome = <div className="key">BudgetHigh:</div>;
   expect(wrapper.contains(welcome)).toEqual(true);
 });
 
 it("renders Account header", () => {
   const wrapper = shallow(<Profile />);
-  const welcome = <div className='key'>Gender:</div>
+  const welcome = <div className="key">Gender:</div>;
   expect(wrapper.contains(welcome)).toEqual(true);
 });
 
 it("renders Account header", () => {
   const wrapper = shallow(<Profile />);
-  const welcome = <div className='key'>Parking:</div>;
+  const welcome = <div className="key">Parking:</div>;
   expect(wrapper.contains(welcome)).toEqual(true);
 });
 
 it("renders Account header", () => {
   const wrapper = shallow(<Profile />);
-  const welcome = <div className='key'>Pet:</div>
+  const welcome = <div className="key">Pet:</div>;
   expect(wrapper.contains(welcome)).toEqual(true);
 });

@@ -26,8 +26,8 @@
   text-decoration: none;
   font-size: 2rem;
   display: flex;
-  position:absolute;
-  left:3%;
+  position: absolute;
+  left: 3%;
   align-items: center;
 }
 
@@ -84,7 +84,6 @@
   height: 130%;
 }
 
-
 .nav-links {
   color: #fff;
   display: flex;
@@ -95,15 +94,12 @@
 }
 
 .nav-links-aboutus:hover {
-  
   transition: all 0.2s ease-out;
 }
 .nav-links-recommend:hover {
-  
   transition: all 0.2s ease-out;
 }
 .nav-links-home:hover {
-  
   transition: all 0.2s ease-out;
 }
 

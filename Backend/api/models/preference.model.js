@@ -5,14 +5,14 @@ const sql = require("./db.js");
  * Construct a preference.
  * @constructor
  * @param {JSON} preference - The preference json file
- * 
+ *
  */
 
 // constructor
-const Preference = function(preference) {
+const Preference = function (preference) {
   this.ID = preference.ID;
   this.SleepStart = preference.SleepStart;
-  this.SleepEnd =  preference.SleepEnd;
+  this.SleepEnd = preference.SleepEnd;
   this.Gender = preference.Gender;
   this.HasPet = preference.HasPet;
   this.Description = preference.Description;
@@ -20,7 +20,7 @@ const Preference = function(preference) {
 
 /**
  * Create a preference.
- * 
+ *
  * @param {Preference} newPreference - a Preference object you want to create
  * @param {function} result - The handler function of the result
  */
@@ -40,7 +40,7 @@ Preference.create = (newPreference, result) => {
 
 /**
  *  Find the preference of a user by his/her userid
- * 
+ *
  * @param {int} UserId - The userid of the user you want to find preference of
  * @param {function} result - The handler function of the result
  */
@@ -66,12 +66,12 @@ Preference.findById = (UserId, result) => {
 
 /**
  * Get all the preferences
- * 
- * 
+ *
+ *
  * @param {function} result - The handler function of the result
  */
 
-Preference.getAll = result => {
+Preference.getAll = (result) => {
   sql.query("SELECT * FROM Preference", (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -87,14 +87,21 @@ Preference.getAll = result => {
 /**
  * Update a preference.
  * @param {int} id -The preferenceid of the preference you want to update
- * @param {Preference} preference - The preference object you want to update the preference with 
+ * @param {Preference} preference - The preference object you want to update the preference with
  * @param {function} result - The handler function of the result
  */
 
 Preference.updateById = (id, preference, result) => {
   sql.query(
     "UPDATE Preference SET SleepStart = ?, SleepEnd = ?, Gender = ?, HasPet = ?, Description = ? WHERE ID = ?",
-    [preference.SleepStart, preference.SleepEnd, preference.Gender,preference.HasPet,preference.Description, id ],
+    [
+      preference.SleepStart,
+      preference.SleepEnd,
+      preference.Gender,
+      preference.HasPet,
+      preference.Description,
+      id,
+    ],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -115,13 +122,12 @@ Preference.updateById = (id, preference, result) => {
 };
 /**
  * Remove a preference.
- * 
+ *
  * @param {int} id - The preferenceid of the preference you want to remove
  * @param {function} result - The handler function of the result
  */
 Preference.remove = (id, result) => {
-  sql.query("DELETE FROM Preference WHERE ID = ?",
-   id, (err, res) => {
+  sql.query("DELETE FROM Preference WHERE ID = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -140,11 +146,11 @@ Preference.remove = (id, result) => {
 };
 /**
  * Remove all preferences.
- * 
- * 
+ *
+ *
  * @param {function} result - The handler function of the result
  */
-Preference.removeAll = result => {
+Preference.removeAll = (result) => {
   sql.query("DELETE FROM Preference", (err, res) => {
     if (err) {
       console.log("error: ", err);

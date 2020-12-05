@@ -10,11 +10,11 @@ insert into `User` (`UserID`, `Name`, `Password`, `Email`, `Contact`, `Type`) va
 insert into `User` (`UserID`, `Name`, `Password`, `Email`, `Contact`, `Type`) values ('9', 'Guy', 'champ', 'guy@ucla.edu', '123', 'renter');
 insert into `User` (`UserID`, `Name`, `Password`, `Email`, `Contact`, `Type`) values ('10', 'Dude', 'pumpkin', 'dude@ucla.edu', '123', 'renter');
 
-insert into `UserInfo` (`ID`, `SleepStart`, `SleepEnd`, `BudgetLow`, `BudgetHigh`, `Gender`, `Pet`, `Parking`, `Comment`, `ImageURL`) values ('1', '2300', '700', '600', '1500', 'M', '0', '0', 'nice', '/images/user1.jpg');
-insert into `UserInfo` (`ID`, `SleepStart`, `SleepEnd`, `BudgetLow`, `BudgetHigh`, `Gender`, `Pet`, `Parking`, `Comment`, `ImageURL`) values ('2', '2300', '700', '600', '1500', 'M', '0', '0', 'nice', '/images/user2.jpg');
+insert into `UserInfo` (`ID`, `SleepStart`, `SleepEnd`, `BudgetLow`, `BudgetHigh`, `Gender`, `Pet`, `Parking`, `Comment`, `ImageURL`) values ('1', '2300', '700', '600', '1500', 'M', '0', '0', 'I love computer science', '/images/user1.jpg');
+insert into `UserInfo` (`ID`, `SleepStart`, `SleepEnd`, `BudgetLow`, `BudgetHigh`, `Gender`, `Pet`, `Parking`, `Comment`, `ImageURL`) values ('2', '2300', '700', '600', '1500', 'M', '0', '0', 'I love computer science as well', '/images/user2.jpg');
 insert into `UserInfo` (`ID`, `SleepStart`, `SleepEnd`, `BudgetLow`, `BudgetHigh`, `Gender`, `Pet`, `Parking`, `Comment`, `ImageURL`) values ('3', '2300', '700', '600', '1500', 'M', '0', '0', 'nice', '/images/user3.jpg');
 insert into `UserInfo` (`ID`, `SleepStart`, `SleepEnd`, `BudgetLow`, `BudgetHigh`, `Gender`, `Pet`, `Parking`, `Comment`, `ImageURL`) values ('4', '2300', '700', '600', '1500', 'M', '0', '0', 'nice', '/images/user4.jpg');
-insert into `UserInfo` (`ID`, `SleepStart`, `SleepEnd`, `BudgetLow`, `BudgetHigh`, `Gender`, `Pet`, `Parking`, `Comment`, `ImageURL`) values ('5', '2300', '700', '600', '1500', 'M', '0', '0', 'nice', '/images/user5.jpg');
+insert into `UserInfo` (`ID`, `SleepStart`, `SleepEnd`, `BudgetLow`, `BudgetHigh`, `Gender`, `Pet`, `Parking`, `Comment`, `ImageURL`) values ('5', '2300', '700', '600', '1500', 'M', '0', '0', 'I love computer science as well', '/images/user5.jpg');
 insert into `UserInfo` (`ID`, `SleepStart`, `SleepEnd`, `BudgetLow`, `BudgetHigh`, `Gender`, `Pet`, `Parking`, `Comment`, `ImageURL`) values ('6', '2300', '700', '600', '1500', 'M', '0', '0', 'nice', '/images/user6.jpg');
 insert into `UserInfo` (`ID`, `SleepStart`, `SleepEnd`, `BudgetLow`, `BudgetHigh`, `Gender`, `Pet`, `Parking`, `Comment`, `ImageURL`) values ('7', '2300', '700', '600', '1500', 'M', '0', '0', 'nice', '/images/user7.jpg');
 insert into `UserInfo` (`ID`, `SleepStart`, `SleepEnd`, `BudgetLow`, `BudgetHigh`, `Gender`, `Pet`, `Parking`, `Comment`, `ImageURL`) values ('8', '2300', '700', '600', '1500', 'M', '0', '0', 'nice', '/images/user8.jpg');

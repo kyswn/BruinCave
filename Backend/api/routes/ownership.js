@@ -1,8 +1,8 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-const ownership = require("../controllers/ownership.controller.js")
+const ownership = require("../controllers/ownership.controller.js");
 
-//create ownership 
+//create ownership
 router.post("/", ownership.create);
 
 // Retrieve ownership by UserId
@@ -22,6 +22,5 @@ router.delete("/a/:AptID", ownership.deleteByAptId);
 
 //delete all ownership
 router.delete("/", ownership.deleteAll);
-
 
 module.exports = router;

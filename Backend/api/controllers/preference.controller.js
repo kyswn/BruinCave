@@ -5,7 +5,7 @@ exports.create = (req, res) => {
   // Validate request
   if (!req.body) {
     res.status(400).send({
-      message: "Content can not be empty!"
+      message: "Content can not be empty!",
     });
   }
 
@@ -16,7 +16,7 @@ exports.create = (req, res) => {
     SleepEnd: req.body.SleepEnd,
     Gender: req.body.Gender,
     HasPet: req.body.HasPet,
-    Description: req.body.Description
+    Description: req.body.Description,
   });
 
   // Save Preference in the database
@@ -24,7 +24,7 @@ exports.create = (req, res) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the preference."
+          err.message || "Some error occurred while creating the preference.",
       });
     else res.send(data);
   });
@@ -32,31 +32,31 @@ exports.create = (req, res) => {
 
 // Retrieve all Preferences from the database.
 exports.findAll = (req, res) => {
-    Preference.getAll((err, data) => {
-        if (err)
-          res.status(500).send({
-            message:
-              err.message || "Some error occurred while retrieving Preferences."
-          });
-        else res.send(data);
-      }); 
+  Preference.getAll((err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving Preferences.",
+      });
+    else res.send(data);
+  });
 };
 
 // Find a single preference with a ID
 exports.findOne = (req, res) => {
-    Preference.findById(req.params.UserID, (err, data) => {
-        if (err) {
-          if (err.kind === "not_found") {
-            res.status(404).send({
-              message: `Not found preference with id ${req.params.UserID}.`
-            });
-          } else {
-            res.status(500).send({
-              message: "Error retrieving preference with id " + req.params.UserID
-            });
-          }
-        } else res.send(data);
-      });
+  Preference.findById(req.params.UserID, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found preference with id ${req.params.UserID}.`,
+        });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving preference with id " + req.params.UserID,
+        });
+      }
+    } else res.send(data);
+  });
 };
 
 // Update a preference identified by the userid in the request
@@ -64,19 +64,22 @@ exports.update = (req, res) => {
   // Validate Request
   if (!req.body) {
     res.status(400).send({
-      message: "Content can not be empty!"
+      message: "Content can not be empty!",
     });
   }
 
-  Preference.updateById(req.params.UserID,new Preference(req.body), (err, data) => {
+  Preference.updateById(
+    req.params.UserID,
+    new Preference(req.body),
+    (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
           res.status(404).send({
-            message: `Not found Preference with id ${req.params.UserID}.`
+            message: `Not found Preference with id ${req.params.UserID}.`,
           });
         } else {
           res.status(500).send({
-            message: "Error updating preference with id " + req.params.UserID
+            message: "Error updating preference with id " + req.params.UserID,
           });
         }
       } else res.send(data);
@@ -86,29 +89,29 @@ exports.update = (req, res) => {
 
 // Delete a preference with the specified userid in the request
 exports.delete = (req, res) => {
-    Preference.remove(req.params.UserID, (err, data) => {
-        if (err) {
-          if (err.kind === "not_found") {
-            res.status(404).send({
-              message: `Not found preference with id ${req.params.UserID}.`
-            });
-          } else {
-            res.status(500).send({
-              message: "Could not delete preference with id " + req.params.UserID
-            });
-          }
-        } else res.send({ message: `PREFERENCE was deleted successfully!` });
-      }); 
+  Preference.remove(req.params.UserID, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found preference with id ${req.params.UserID}.`,
+        });
+      } else {
+        res.status(500).send({
+          message: "Could not delete preference with id " + req.params.UserID,
+        });
+      }
+    } else res.send({ message: `PREFERENCE was deleted successfully!` });
+  });
 };
 
 // Delete all preferences from the database.
 exports.deleteAll = (req, res) => {
-    Preference.removeAll((err, data) => {
-        if (err)
-          res.status(500).send({
-            message:
-              err.message || "Some error occurred while removing all PREFERENCES."
-          });
-        else res.send({ message: `All PREFERENCES were deleted successfully!` });
+  Preference.removeAll((err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while removing all PREFERENCES.",
       });
+    else res.send({ message: `All PREFERENCES were deleted successfully!` });
+  });
 };

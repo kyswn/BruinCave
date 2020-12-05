@@ -1,17 +1,17 @@
-import React from 'react';
-import './Button.css';
-import { Link } from 'react-router-dom';
+import React from "react";
+import "./Button.css";
+import { Link } from "react-router-dom";
 
-const STYLES = ['btn--primary', 'btn--outline', 'btn--test', 'btn--outline1'];
+const STYLES = ["btn--primary", "btn--outline", "btn--test", "btn--outline1"];
 
-const SIZES = ['btn--medium', 'btn--large'];
+const SIZES = ["btn--medium", "btn--large"];
 
 export const SignupButton = ({
   children,
   type,
   onClick,
   buttonStyle,
-  buttonSize
+  buttonSize,
 }) => {
   const checkButtonStyle = STYLES.includes(buttonStyle)
     ? buttonStyle
@@ -20,15 +20,14 @@ export const SignupButton = ({
   const checkButtonSize = SIZES.includes(buttonSize) ? buttonSize : SIZES[0];
 
   return (
-    <Link to='/signup' className='btn-mobile'>
+    <Link to="/signup" className="btn-mobile">
       <button
         className={`btn ${checkButtonStyle} ${checkButtonSize}`}
         onClick={onClick}
         type={type}
-          style={{ fontFamily: "Roboto" }}
-      ><b>
-        {children}
-        </b>
+        style={{ fontFamily: "Roboto" }}
+      >
+        <b>{children}</b>
       </button>
     </Link>
   );

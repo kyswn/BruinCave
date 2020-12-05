@@ -5,7 +5,7 @@
   position: relative;
   border-radius: 10px;
   height: 630px;
-  color:#fff;
+  color: #fff;
   display: grid;
 }
 
@@ -16,7 +16,7 @@
   position: relative;
   border-radius: 10px;
   height: 420px;
-  color:#fff;
+  color: #fff;
   display: grid;
 }
 
@@ -89,7 +89,7 @@
   text-align: center;
   width: 80%;
   margin-bottom: 0.1rem;
-  color: #F5B53F;
+  color: #f5b53f;
 }
 
 .form-inputs {
@@ -131,7 +131,7 @@
   height: 50px;
   margin-top: 30px;
   border-radius: 2px;
-  background: #F5B53F;
+  background: #f5b53f;
   outline: none;
   border: none;
   color: #fff;
@@ -154,6 +154,6 @@
 
 .form-input-login a {
   text-decoration: none;
-  color: #F5B53F;
+  color: #f5b53f;
   font-weight: 600;
 }

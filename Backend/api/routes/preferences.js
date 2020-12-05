@@ -1,8 +1,8 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-const preferences = require("../controllers/preference.controller.js")
+const preferences = require("../controllers/preference.controller.js");
 
-//create preference 
+//create preference
 router.post("/", preferences.create);
 
 // Retrieve all preferences
@@ -19,6 +19,5 @@ router.delete("/:UserID", preferences.delete);
 
 //delete all preferences
 router.delete("/", preferences.deleteAll);
-
 
 module.exports = router;

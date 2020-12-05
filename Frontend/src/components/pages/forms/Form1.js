@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import './Form1.css';
-import FormSignup from './FormSignup';
-import FormSuccess from './FormSuccess';
+import React, { useState } from "react";
+import "./Form1.css";
+import FormSignup from "./FormSignup";
+import FormSuccess from "./FormSuccess";
 
 const Form = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -10,13 +10,7 @@ const Form = () => {
   }
   return (
     <>
-      
-        {!isSubmitted ? (
-          <FormSignup submitForm={submitForm} />
-        ) : (
-          <FormSuccess />
-        )}
-        
+      {!isSubmitted ? <FormSignup submitForm={submitForm} /> : <FormSuccess />}
     </>
   );
 };
