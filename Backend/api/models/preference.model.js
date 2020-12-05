@@ -10,7 +10,7 @@ const sql = require("./db.js");
 
 // constructor
 const Preference = function(preference) {
-  //this.ID = preference.ID;
+  this.ID = preference.ID;
   this.SleepStart = preference.SleepStart;
   this.SleepEnd =  preference.SleepEnd;
   this.Gender = preference.Gender;

@@ -68,7 +68,6 @@ export function Profile(props) {
       put('/apt/' + id, data)
     } else {
       post('/apt', apartment).then(res => {
-        console.log(res)
         post('/ownership', {UsrID: id, AptID: res.id})
       })
     }
@@ -232,8 +231,8 @@ export function Profile(props) {
             </div>
             <div className='display-row'>
               <div className='key'>Description:</div>
-              <EditInput value={apartment.Description} edit={apartment.edit}
-                        onChange={v => setApartment({...apartment, Description: v})}/>
+              <EditInput value={apartment.Comment} edit={apartment.edit}
+                        onChange={v => setApartment({...apartment, Comment: v})}/>
             </div>
           </div>
         </div>

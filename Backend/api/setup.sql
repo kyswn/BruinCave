@@ -13,7 +13,7 @@ CREATE TABLE User (
 
 
 CREATE TABLE UserInfo (
-	ID INT NOT NULL AUTO_INCREMENT,
+	ID INT NOT NULL,
 	SleepStart INT,
 	SleepEnd INT,
 	BudgetLow INT,
@@ -28,7 +28,7 @@ CREATE TABLE UserInfo (
 );
 
 CREATE TABLE Preference (
-	ID INT NOT NULL AUTO_INCREMENT,
+	ID INT NOT NULL,
 	SleepStart INT,
 	SleepEnd INT,
 	Gender VARCHAR(255),

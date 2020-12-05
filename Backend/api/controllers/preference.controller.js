@@ -11,6 +11,7 @@ exports.create = (req, res) => {
 
   // Create a Preference
   const preference = new Preference({
+    ID: req.body.ID,
     SleepStart: req.body.SleepStart,
     SleepEnd: req.body.SleepEnd,
     Gender: req.body.Gender,

@@ -7,6 +7,7 @@ const sql = require('./db.js');
  * 
  */
 const Userinfo = function(userinfo) {
+    this.ID = userinfo.ID,
     this.SleepStart = userinfo.SleepStart,
     this.SleepEnd = userinfo.SleepEnd,
     this.BudgetLow = userinfo.BudgetLow,
