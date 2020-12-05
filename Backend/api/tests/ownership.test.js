@@ -1,5 +1,5 @@
 const request = require("supertest");
-const app = require('./app');
+const app = require('../app.js');
 
 describe("Create an ownership", () =>{
 test("Should return a new ownership", async () => {
@@ -59,8 +59,9 @@ test("Should return an array of corresponding AptID", async () => {
 const resp =  await request(app).get("/ownership/u/7/");
 
 expect(resp.status).toBe(200);
-expect(resp.body).toContain(4);
+expect(resp.body).toContainEqual({"AptID": 4});
 
+});
 });
 
 describe("Get an ownership by Userid", () =>{
@@ -69,8 +70,9 @@ test("Should return an array of corresponding UserID", async () => {
 const resp =  await request(app).get("/ownership/a/5/");
 
 expect(resp.status).toBe(200);
-expect(resp.body).toContain(8);
+expect(resp.body).toContainEqual({"UsrID": 8});
 
+});
 });
 
 
