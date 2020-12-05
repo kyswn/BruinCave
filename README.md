@@ -52,6 +52,8 @@ Detailed description of our RESTful API
       - ownership.test.js
       - apt.test.js
       - backend_test.md
+      Description of test details
+      - recommend.test.js
 
 
 ## Reference
