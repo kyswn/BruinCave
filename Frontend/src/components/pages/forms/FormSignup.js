@@ -22,6 +22,7 @@ const FormSignup = ({ handleChange }) => {
             name='username'
             placeholder='Enter your username'
             onChange={e=>handleChange({Name:e.target.value})}
+            
           />
           <br/>
         </div>
