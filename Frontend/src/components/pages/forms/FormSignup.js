@@ -3,7 +3,7 @@ import validate from './validateInfo';
 import useForm from './useForm';
 import './Form1.css';
 
-const FormSignup = ({ handleChange }) => {
+const FormSignup = ({ handleChange, errors }) => {
   // const { handleChange, values, errors } = useForm(
   //   submitForm,
   //   validate
@@ -22,7 +22,6 @@ const FormSignup = ({ handleChange }) => {
             name='username'
             placeholder='Enter your username'
             onChange={e=>handleChange({Name:e.target.value})}
-            
           />
           <br/>
         </div>
@@ -36,6 +35,7 @@ const FormSignup = ({ handleChange }) => {
             onChange={e=>handleChange({Email:e.target.value})}
           />
           <br/>
+          {errors&&errors.email && <p>{errors.email}</p >}
         </div>
         <div className='form-inputs'>
           <label className='form-label'>Password</label>
