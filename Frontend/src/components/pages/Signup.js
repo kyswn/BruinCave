@@ -43,6 +43,7 @@ function Signup({history}) {
       SleepStart:userinfo.SleepStart,
       SleepEnd:userinfo.SleepEnd,
       Gender:userinfo.Gender,
+      HasPet:userinfo.Pet,
     }
     const body={
       user,
@@ -51,10 +52,15 @@ function Signup({history}) {
       apt
     }
     post('/users',{...user,Contact:0}).then(res=>{
-      const id = res.UserID
+      console.log(res)
+      const id = res.id
       post('/preferences',{ID:id,...preference})
       post('/userinfo',{ID:id,...userinfo})
-      post('/apt',{ApartmentID:id,...userinfo})
+      if (apt.Name) {
+        post('/apt',apt).then(res=> {
+          post('ownership', {UsrID: id, AptID: res.id})
+        })
+      }
     })
   }
 

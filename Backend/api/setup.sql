@@ -13,7 +13,7 @@ CREATE TABLE User (
 
 
 CREATE TABLE UserInfo (
-	ID INT NOT NULL AUTO_INCREMENT,
+	ID INT NOT NULL,
 	SleepStart INT,
 	SleepEnd INT,
 	BudgetLow INT,
@@ -28,7 +28,7 @@ CREATE TABLE UserInfo (
 );
 
 CREATE TABLE Preference (
-	ID INT NOT NULL AUTO_INCREMENT,
+	ID INT NOT NULL,
 	SleepStart INT,
 	SleepEnd INT,
 	Gender VARCHAR(255),
@@ -40,13 +40,13 @@ CREATE TABLE Preference (
 
 CREATE TABLE Apartment (
 	ApartmentID INT NOT NULL AUTO_INCREMENT,
-	Name VARCHAR(255) NOT NULL,
+	Name VARCHAR(255),
 	Bedroom INT NOT NULL,
 	Bathroom INT NOT NULL,
 	Parking INT NOT NULL,
 	Description VARCHAR(255),
 	Location VARCHAR(255) NOT NULL,
-	Amenity VARCHAR(255) NOT NULL,
+	Amenity VARCHAR(255),
 	Price INT NOT NULL,
 	Comment VARCHAR(255),
 	PRIMARY KEY(ApartmentID)

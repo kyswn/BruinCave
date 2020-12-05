@@ -9,6 +9,7 @@ exports.create = (req,res) => {
     }
 
     const userinfo = new Userinfo({
+        ID: req.body.ID,
         SleepStart: req.body.SleepStart,
         SleepEnd: req.body.SleepEnd,
         BudgetLow: Number(req.body.BudgetLow),
