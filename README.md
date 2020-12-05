@@ -5,7 +5,7 @@ Welcome to BruinCave, where you can find your next perfect Bruin roommate(s)
 
 ## How to Run
 
-1. Download MySQL, Node.js
+1. Download MySQL and Node.js
 2. Clone this project to your local folder
 3. Create a MySQL account, then put the your database information in BruinCave/Backend/api/config/db.config.js
 4. Run  /BruinCave/Backend/api/setup.sql to create the schemes, and then run /BruinCave/Backend/api/migration.sql to populate your database with mock database
