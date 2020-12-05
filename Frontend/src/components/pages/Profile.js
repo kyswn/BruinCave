@@ -112,7 +112,7 @@ export function Profile(props) {
                 ...userInfo,
                 edit: !userInfo.edit
               })
-            }}>{userInfo.edit ? 'save' : 'edit'}</span>
+            }}>{userInfo.edit ? 'Save' : 'Edit'}</span>
           </div>
 
           
