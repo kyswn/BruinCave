@@ -36,7 +36,6 @@ export default function ProfileDisplay() {
   })
   const [apartment, setApartment] = useState({})
 
-<<<<<<< HEAD
 /*
   useEffect(() => {
     const id = ''//需要先知道id
@@ -50,8 +49,6 @@ export default function ProfileDisplay() {
     console.log(store.getState().id);
     history.push('/recommend');
   }
-=======
->>>>>>> 6b976dad42e5d37b25e35f8f97a08c28af02b023
 
   useEffect(() => {
     const fetchThings = async () => {

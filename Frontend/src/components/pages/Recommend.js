@@ -14,7 +14,7 @@ export default function Recommend() {
 
      
       let id = store.getState().id;
-      if(i!=0){
+      if(id!=0){
         console.log(id);
         const _userinfo = await fetch(`http://localhost:3000/recommend/${id}`);
         const userinfojson = await _userinfo.json();
