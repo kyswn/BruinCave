@@ -10,7 +10,7 @@ export default function Recommend() {
 
   useEffect(() => {
     const fetchThings = async () => {
-      const _userinfo = await fetch("http://localhost:3001/recommend/5");
+      const _userinfo = await fetch(`http://localhost:3000/recommend/${window.userId}`);
       const userinfojson = await _userinfo.json();
       setState({
         matchedUsers: userinfojson,
@@ -54,56 +54,3 @@ export default function Recommend() {
     </section>
   );
 }
-/*
-
-          <RecommendationCard
-            name="Josephine Bruin"
-            major="CS"
-            gender="female"
-            description="I want a roommate"
-            img="/images/user2.jpg"
-          />
-          <RecommendationCard
-            name="Josephine Bruin"
-            major="CS"
-            gender="female"
-            description="I want a roommate"
-            img="/images/user3.jpg"
-          />
-          <RecommendationCard
-            name="Josephine Bruin"
-            major="CS"
-            gender="female"
-            description="I want a roommate"
-            img="/images/user4.jpg"
-          />
-
-          <RecommendationCard
-            name="Josephine Bruin"
-            major="CS"
-            gender="female"
-            description="I want a roommate"
-            img="/images/user5.jpg"
-          />
-          <RecommendationCard
-            name="Josephine Bruin"
-            major="CS"
-            gender="female"
-            description="I want a roommate"
-            img="/images/user7.jpg"
-          />
-          <RecommendationCard
-            name="Josephine Bruin"
-            major="CS"
-            gender="female"
-            description="I want a roommate"
-            img="/images/user6.jpg"
-          />
-          <RecommendationCard
-            name="Josephine Bruin"
-            major="CS"
-            gender="female"
-            description="I want a roommate"
-            img="/images/user1.jpg"
-          />
- */

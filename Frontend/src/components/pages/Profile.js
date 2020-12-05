@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {get, put} from "../../utils/request";
+import {get, put, post} from "../../utils/request";
 import * as filestack from 'filestack-js';
 import {IconButton, Avatar} from '@material-ui/core';
 
@@ -20,33 +20,34 @@ const EditInput = ({value, onChange, edit}) => {
 export function Profile(props) {
   const [userInfo, setUserInfo] = useState({
     edit: false,
-    ID: 1,
-    SleepStart: 0,
-    SleepEnd: 8,
-    BudgetLow: 2000,
-    BudgetHigh: 3000,
-    Gender: 'man',
-    Pet: 1,
-    Parking: 1,
-    Comment: 'easygoing',
-    imageURL: '',
+    ID: "",
+    SleepStart: "",
+    SleepEnd: "",
+    BudgetLow: "",
+    BudgetHigh: "",
+    Gender: "",
+    Pet: "",
+    Parking: "",
+    Comment: "",
+    ImageURL: "",
   })
   const id = window.userId;//需要先知道id here
   const [preference, setPreference] = useState({
     edit: false,
-    SleepStart: 0,
-    SleepEnd: 8,
-    Gender: 'man',
-    HasPet: 1,
+    SleepStart: "",
+    SleepEnd: "",
+    Gender: "",
+    HasPet: "",
   })
 
   const [apartment, setApartment] = useState({
     edit: false,
-    Location: "111 Bruin Ave, Apt 103",
-    Bedroom: 2,
-    Bathroom: 2,
-    Parking: 1,
-    Description: "nice apartment"
+    ApartmentID: "",
+    Location: "",
+    Bedroom: "",
+    Bathroom: "",
+    Parking: "",
+    Description: ""
   })
   
   const updateUserinfo = () => {
@@ -59,7 +60,14 @@ export function Profile(props) {
   }
   const updateApartment = () => {
     const {edit, ...data} = apartment
-    put('/apt/' + id, data)
+    if (apartment.ApartmentID) {
+      put('/apt/' + id, data)
+    } else {
+      post('/apt', apartment).then(res => {
+
+      })
+    }
+    
   }
   useEffect(() => {
     get('/userinfo/' + id).then(res => {
@@ -68,15 +76,17 @@ export function Profile(props) {
     get('/preferences/' + id).then(res => {
       setPreference(res)
     })
-    get('/apt/' + id).then(res => {
-      setApartment(res)
+    get('/ownership/u/' + id).then(res => {
+      get('apt/'+res[0].AptID).then(res1 => {
+        setApartment(res1)
+      })
     })
   }, []);
 
   const imageUploadOptions = {
     onUploadDone: res => {
       console.log(res.filesUploaded[0].url)
-      setUserInfo({...userInfo, imageURL: res.filesUploaded[0].url})
+      setUserInfo({...userInfo, ImageURL: res.filesUploaded[0].url})
       updateUserinfo()
     }
   }
@@ -87,7 +97,7 @@ export function Profile(props) {
         <IconButton style={{postion: "absolute", left: 30, top: 170, width: 100, height: 100, zIndex: 1}} onClick={()=>imageUploadClient.picker(imageUploadOptions).open()}>
           <Avatar alt="U" 
             style={{width: 100, height: 100}}
-            src={userInfo.imageURL}/>
+            src={userInfo.ImageURL}/>
         </IconButton>
         <div className="form-content" style={{paddingBottom: 20}}>
           <div style={{textAlign: "center", fontSize: "2rem"}}>UserInfo
