@@ -48,7 +48,6 @@ export default function Recommend() {
                   ? "loading"
                   : state.matchedUsers[i] && state.matchedUsers[i].userInfo.Comment
               }
-<<<<<<< HEAD
               id={
                 state.loading
                   ? "loading"
@@ -58,13 +57,6 @@ export default function Recommend() {
               hasApartment={state.matchedUsers[i] && state.matchedUsers[i].apartment !== null}
               score={state.matchedUsers[i] && state.matchedUsers[i].score}
               email={state.matchedUsers[i] && state.matchedUsers[i].user.Email}
-=======
-              id={state.loading ? "loading" : state.matchedUsers[i].userInfo.ID}
-              img={state.matchedUsers[i].userInfo.ImageURL}
-              hasApartment={state.matchedUsers[i].apartment !== null}
-              score={state.matchedUsers[i].score}
-              email={state.matchedUsers[i].user.Email}
->>>>>>> 7b38917a71c76d3e248f38d62c47cd3b706bb7bd
             />
           ))}
         </div>

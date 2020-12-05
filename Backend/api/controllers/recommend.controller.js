@@ -221,8 +221,8 @@ const recommendWithApt = (userId, apt, result) => {
 const checkUserMatch = (preference, myInfo, targetInfo, resolve) => {
   if (preference.Gender !== targetInfo.Gender ||
       (!preference.hasPet && targetInfo.Pet) ||
-      timeDiff(preference.SleepStart, targetInfo.SleepStart) > 2 ||
-      timeDiff(preference.SleepEnd, targetInfo.SleepEnd) > 2) {
+      timeDiff(preference.SleepStart, targetInfo.SleepStart) > 200 ||
+      timeDiff(preference.SleepEnd, targetInfo.SleepEnd) > 200) {
     resolve(-1);
     return;
   }
@@ -244,7 +244,7 @@ const checkUserMatch = (preference, myInfo, targetInfo, resolve) => {
 
 const timeDiff = (time1, time2) => {
   const diff = Math.abs(time1 - time2);
-  return Math.min(diff, 24 - diff);
+  return Math.min(diff, 2400 - diff);
 }
 
 const checkAptMatch = (apt, userInfo) => {

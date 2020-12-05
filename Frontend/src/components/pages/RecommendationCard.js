@@ -4,6 +4,7 @@ import "../../App.css";
 import "./RecommendationCard.css";
 import HomeIcon from '@material-ui/icons/Home';
 import {Avatar} from '@material-ui/core';
+import { Link } from 'react-router-dom'
 
 const RecommendationCard = (props) => {
   return (
@@ -24,9 +25,9 @@ const RecommendationCard = (props) => {
             <p class="card-text" style={{ fontFamily: "Roboto" }}>
               Email: {props.email}
             </p>
-            <a href={'/recommendProfile?id=' + props.id+ '&name=' + props.name} class="card-link" style={{ fontFamily: "Roboto" }}>
+            <Link to={`/recommendProfile?id=${props.id}&name=${props.name}`}>
               View Profile
-            </a>
+            </Link>
             {props.hasApartment? <HomeIcon style={{marginLeft: 120}}></HomeIcon> : null}
           </div>
         </div>
