@@ -43,3 +43,12 @@ Detailed description of our RESTful API
 
 
 ## Testing
+- Backend/
+  - api/
+    - tests/
+      - user.test.js
+      - userinfo.test.js
+      - preference.test.js
+      - ownership.test.js
+      - apt.test.js
+      - backend_test.md

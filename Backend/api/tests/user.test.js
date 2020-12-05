@@ -1,5 +1,5 @@
 const request = require("supertest");
-const app = require('./app');
+const app = require('../app.js');
 //const dummy_inputs = require('./migration.sql')
 
 /*test('adds 1 + 2 to equal 3', () => {
