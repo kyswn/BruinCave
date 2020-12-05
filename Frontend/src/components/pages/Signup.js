@@ -64,6 +64,7 @@ function Signup({history}) {
     })
   }
 
+  const [userErrors,setUserErrors]=useState({})
   function setPage() {
     if (signUpPage === "account") {
       return (
@@ -73,12 +74,21 @@ function Signup({history}) {
               <span className="close-btn">×</span>
               <div className="form-content">
                 <form className="form" noValidate>
-                  <FormSignup handleChange={e => setUser({...user, ...e})}/>
+                  <FormSignup errors={userErrors} handleChange={e => {
+                    setUser({...user, ...e})
+                  }}/>
 
                   <Button
                     buttonStyle="btn--outline"
                     buttonLink="/signup"
-                    onClick={() => setSignUpPage("habits")}
+                    onClick={() => {
+                      if (!/\S+@ucla.edu/.test(user.Email)){
+                        setUserErrors({email:'you have to enter your ucla email'})
+                        return
+                      }
+                      setUserErrors({})
+                      setSignUpPage("habits")
+                    }}
                   >
                     Continue
                   </Button>
